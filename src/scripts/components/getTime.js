@@ -1,13 +1,7 @@
-const time = document.querySelector("time");
-time.className = "time"
+function date() {
+    let time = new Date();
+    let newTime = time.toLocaleString("ru").slice(0, -3);
 
-let myTime = function () {
-    document.getElementById("time").innerHTML = new Date().toLocaleString("Europe/Minsk", {
-        timeZone: "Europe/Minsk",
-        timeStyle: "short",
-        hourCycle: "h24"
-    })
+    return newTime;
 }
-
-myTime();
-setInterval(myTime, 1000);
+date()
