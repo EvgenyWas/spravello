@@ -1,1 +1,1 @@
-import { lastFetch } from "./worldTimeApi.js"
+import { userTime } from "./worldTimeApi.js"
