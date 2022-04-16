@@ -13,11 +13,11 @@
             <div class="header__box">
                 <h2 class="header__title">Trello</h2>
                 <form class="header__form">
-                    <input type="text" class="header__form-search" id="header__form-search">
-                    <button class="header__form-btn" id="header__form-btn">search</button>
+                    <input type="text" class="header__form-search" id="seacrh-by-title">
+                    <button class="header__form-btn" id="seacrh-button">search</button>
                 </form>
                 <div class="header__box-time">
-                    <time class="header__time" id="header__time"></time>
+                    <time class="header__time" id="time"></time>
                 </div>
             </div>
         </header>
@@ -28,22 +28,8 @@
                         <div class="todo__header-title">Todo:</div>
                         <span class="todo__header-counter">2</span>
                     </div>
-                    <div class="todo__task">
-                        <div class="task__header">
-                            <h3 class="task__header-title">Title</h3>
-                            <button class="task__header-edit">Edit</button>
-                            <button class="task__header-delete">Delete</button>
-                        </div>
-                        <div class="task__main">
-                            <p class="task__main-description">Description</p>
-                            <button class="task__main-next">></button> 
-                        </div>
-                        <div class="task__footer">
-                            <p class="task__footer-user">User</p>
-                            <time class="task__footer-time">12:30</time>
-                        </div>
-                    </div>
-                    <div class="todo__header-footer">Add todo</div>
+                    <div class="todo__task" id="todo-box"></div>
+                    <div class="todo__header-footer" id="add-button">Add todo</div>
                 </div>
             </article>
             <!-- second article -->
@@ -53,20 +39,7 @@
                         <div class="todo__header-title">In Progress:</div>
                         <span class="todo__header-counter">1</span>
                     </div>
-                    <div class="todo__task">
-                        <div class="task__header">
-                            <h3 class="task__header-title">Title</h3>
-                            <button class="task__header-edit">Back</button>
-                            <button class="task__header-delete">Complete</button>
-                        </div>
-                        <div class="task__main">
-                            <p class="task__main-description">Description</p>
-                        </div>
-                        <div class="task__footer">
-                            <p class="task__footer-user">User</p>
-                            <time class="task__footer-time">12:30</time>
-                        </div>
-                    </div>
+                    <div class="todo__task" id="inprogress-box"></div>
                 </div>
             </article>
             <!-- third article -->
@@ -76,33 +49,10 @@
                         <div class="todo__header-title">Done:</div>
                         <span class="todo__header-counter">1</span>
                     </div>
-                    <div class="todo__task">
-                        <div class="task__header">
-                            <h3 class="task__header-title">Title</h3>
-                            <button class="task__header-delete">Delete</button>
-                        </div>
-                        <div class="task__main">
-                            <p class="task__main-description">Description</p>
-                        </div>
-                        <div class="task__footer">
-                            <p class="task__footer-user">User</p>
-                            <time class="task__footer-time">12:30</time>
-                        </div>
-                    </div>
-                    <div class="todo__header-footer">Add todo</div>
+                    <div class="todo__task" id="complete-box"></div>
+                    <div class="todo__header-footer" id="deleteall-button">Delete all</div>
                 </div>
             </article>
-            <!-- <div class="add-todo">
-                <h3 class="add-todo__title">Title</h3>
-                <p class="add-todo__description">Description</p>
-                <div class="add-todo__footer">
-                    <select name="users" id="add_todo__users">
-                        <option value="1">Admin</option>
-                    </select>
-                    <button class="add-todo__cancel">Cancel</button>
-                    <button class="add-todo__confirm">Confirm</button>
-                </div>
-            </div> -->
         </main>
     </div>
     <script src="./scripts/index.js"></script>
