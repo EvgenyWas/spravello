@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Copy of trello</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__box">
+                <h2 class="header__title">Trello</h2>
+                <form class="header__form">
+                    <input type="text" class="header__form-search" id="seacrh-by-title">
+                    <button class="header__form-btn" id="seacrh-button">search</button>
+                </form>
+                <div class="header__box-time">
+                    <time class="header__time" id="time"></time>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__header-title">Todo:</div>
+                        <span class="todo__header-counter">2</span>
+                    </div>
+                    <div class="todo__task" id="todo-box"></div>
+                    <div class="todo__header-footer" id="add-button">Add todo</div>
+                </div>
+            </article>
+            <!-- second article -->
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__header-title">In Progress:</div>
+                        <span class="todo__header-counter">1</span>
+                    </div>
+                    <div class="todo__task" id="inprogress-box"></div>
+                </div>
+            </article>
+            <!-- third article -->
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__header-title">Done:</div>
+                        <span class="todo__header-counter">1</span>
+                    </div>
+                    <div class="todo__task" id="complete-box"></div>
+                    <div class="todo__header-footer" id="deleteall-button">Delete all</div>
+                </div>
+            </article>
+        </main>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>
