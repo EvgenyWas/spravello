@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Copy of trello</title>
+</head>
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <div class="header__box">
+                <h2 class="header__title">Trello</h2>
+                <form class="header__form">
+                    <input type="text" class="header__form-search" id="header__form-search">
+                    <button class="header__form-btn" id="header__form-btn">search</button>
+                </form>
+                <div class="header__box-time">
+                    <time class="header__time" id="header__time"></time>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__header-title">Todo:</div>
+                        <span class="todo__header-counter">2</span>
+                    </div>
+                    <div class="todo__task">
+                        <div class="task__header">
+                            <h3 class="task__header-title">Title</h3>
+                            <button class="task__header-edit">Edit</button>
+                            <button class="task__header-delete">Delete</button>
+                        </div>
+                        <div class="task__main">
+                            <p class="task__main-description">Description</p>
+                            <button class="task__main-next">></button> 
+                        </div>
+                        <div class="task__footer">
+                            <p class="task__footer-user">User</p>
+                            <time class="task__footer-time">12:30</time>
+                        </div>
+                    </div>
+                    <div class="todo__header-footer">Add todo</div>
+                </div>
+            </article>
+            <!-- second article -->
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__header-title">In Progress:</div>
+                        <span class="todo__header-counter">1</span>
+                    </div>
+                    <div class="todo__task">
+                        <div class="task__header">
+                            <h3 class="task__header-title">Title</h3>
+                            <button class="task__header-edit">Back</button>
+                            <button class="task__header-delete">Complete</button>
+                        </div>
+                        <div class="task__main">
+                            <p class="task__main-description">Description</p>
+                        </div>
+                        <div class="task__footer">
+                            <p class="task__footer-user">User</p>
+                            <time class="task__footer-time">12:30</time>
+                        </div>
+                    </div>
+                </div>
+            </article>
+            <!-- third article -->
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__header-title">Done:</div>
+                        <span class="todo__header-counter">1</span>
+                    </div>
+                    <div class="todo__task">
+                        <div class="task__header">
+                            <h3 class="task__header-title">Title</h3>
+                            <button class="task__header-delete">Delete</button>
+                        </div>
+                        <div class="task__main">
+                            <p class="task__main-description">Description</p>
+                        </div>
+                        <div class="task__footer">
+                            <p class="task__footer-user">User</p>
+                            <time class="task__footer-time">12:30</time>
+                        </div>
+                    </div>
+                    <div class="todo__header-footer">Add todo</div>
+                </div>
+            </article>
+            <!-- <div class="add-todo">
+                <h3 class="add-todo__title">Title</h3>
+                <p class="add-todo__description">Description</p>
+                <div class="add-todo__footer">
+                    <select name="users" id="add_todo__users">
+                        <option value="1">Admin</option>
+                    </select>
+                    <button class="add-todo__cancel">Cancel</button>
+                    <button class="add-todo__confirm">Confirm</button>
+                </div>
+            </div> -->
+        </main>
+    </div>
+    <script src="./scripts/index.js"></script>
+</body>
+</html>
