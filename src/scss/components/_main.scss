@@ -1,0 +1,58 @@
+// main
+.main{
+    display: flex;
+}
+
+/* Todo */
+.todo{
+    display: flex;
+    margin: 20px;
+    width: 300px;
+    height: 600px;
+    background-color: $secondary-color;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.todo__container{
+    display: flex;
+    flex-direction: column;
+}
+
+.todo__header{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    height: 50px;
+    background-color: $primary-color;
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.todo__title{
+    display: flex;
+    flex-grow: 1;
+}
+
+.todo__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: 470px;
+    width: 290px;
+    height: 50px;
+    margin: 0 auto;
+    background-color: $primary-color;
+    border-radius: 5px;
+}
+
+/* task */
+.todo__task{
+    width: 280px;
+    padding: 5px;
+    margin: 5px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+}
