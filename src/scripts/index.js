@@ -27,8 +27,6 @@ const generateModalTask = () => {
 };
 
 // Function for generate Todo
-import { createElement } from "./templates/templates.js";
-
 function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
   const todoContainer = createElement("div", "container");
   const todoElementTitle = createElement("h4", "title_todo", todoTitle);
