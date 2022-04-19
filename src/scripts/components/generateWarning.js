@@ -9,9 +9,10 @@ function generateWarning() {
     "modal-warning__cancel__btn",
     "Cancel"
   );
+  
   const modalConfirmBtn = createElement(
     "button",
-    "modal-warning__confirm__btn",
+    "modal-warning__confirm-btn",
     "Confirm"
   );
 

@@ -1,5 +1,8 @@
 import { createElement } from './templates/templates.js'
+import { myTime } from './services/worldTimeApi.js'
+import { getUsersFromApi } from './services/getUsersFromApi'
 
+// Function for generating modal task
 const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
     const titleModal = createElement("input", "modal__title");
@@ -16,6 +19,14 @@ const generateModalTask = () => {
     selectModal.dataset.type = "modalSelect";
     cancelBtn.dataset.type = "btnCancel";
     confirmBtn.dataset.type = "btnConfirm";
+    
+    modalOptions.append(selectModal, cancelBtn, confirmBtn);
+    modalWindow.append(titleModal, modalDescription, modalOptions);
 
     return modalWindow;
-}
+};
+
+// Launch time in header
+setInterval(myTime, 1000);
+
+document.addEventListener('DOMContentLoaded', getUsersFromApi);
