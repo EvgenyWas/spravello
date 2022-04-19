@@ -1,3 +1,5 @@
+import { generateTodo } from "../index.js"
+
 let  arrayOfTodos = [];
 
 const todoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
@@ -18,7 +20,7 @@ addBtn.addEventListener("click", (event) => {
 
     const todoId = Date.now();
     const todo = new todoCreation(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start");
-    main.append(generateModalTask(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start"));
+    main.append(generateTodo(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start"));
     todo.push(arrayOfTodos);
 })
 
@@ -46,7 +48,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-const generateModalTask = () => {
+const generateTodo = () => {
     const modalWindow = createElement("div", "modal__window");
     const titleModal = createElement("input", "modal__title");
     const modalDescription = createElement("input", "modal__description");
