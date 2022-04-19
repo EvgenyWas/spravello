@@ -9,19 +9,29 @@ const todoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime, 
     this.isProgress = isProgress;
 };
 
-add_button.addEventListener("click", (event) => {
-    if (input.value === " ")
+const addBtn = document.querySelector(".add-button");
+
+addBtn.addEventListener("click", (event) => {
+    if (titleModal.value === " ")
+        if (modalDescription.value === " ")
         return
 
     const todoId = Date.now();
-    const todo = new todoCreation(todoId, input.value, input.value, input.select, new Date().toString(), start);
-    main.append(generateModalTask(todoId, input.value, input.value, input.select, new Date().toString(), start));
+    const todo = new todoCreation(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start");
+    main.append(generateModalTask(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start"));
 })
 
 
 window.addEventListener('keydown', event => {
     if (event.keyCode === 13) addBtn.click()
 })
+
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+    if (key === "Escape") {
+        window.close();
+    }
+});
 
 
 const generateModalTask = (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress = start) => {
@@ -41,17 +51,17 @@ const generateModalTask = (todoId, todoTitle, todoDesk, todoUser, todoTime, isPr
     cancelBtn.dataset.type = "btnCancel";
     confirmBtn.dataset.type = "btnConfirm";
 
-main.addEventListener("click", (event) => {
-    if(event.target === cancelBtn) {
-        modalWindow.remove()
-    }
-})
-
     modalOptions.append(selectModal, cancelBtn, confirmBtn);
     modalWindow.append(titleModal, modalDescription, modalOptions);
 
     return modalWindow;
 };
+
+main.addEventListener("click", (event) => {
+    if(event.target === cancelBtn) {
+        modalWindow.remove()
+    }
+});
 
 function getUsersFromApi() {
     fetch("https://jsonplaceholder.typicode.com/users?_limit=5")
