@@ -9,7 +9,7 @@ const todoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime, 
     this.isProgress = isProgress;
 };
 
-const addBtn = document.querySelector(".add-button");
+const addBtn = document.querySelector("#add-button");
 
 addBtn.addEventListener("click", (event) => {
     if (titleModal.value === " ")
@@ -19,6 +19,15 @@ addBtn.addEventListener("click", (event) => {
     const todoId = Date.now();
     const todo = new todoCreation(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start");
     main.append(generateModalTask(todoId, titleModal.value, modalDescription.value, selectModal.select, new Date().toString(), "start"));
+    todo.push(arrayOfTodos);
+})
+
+const confirmBtn = document.querySelector("btnConfirm");
+
+confirmBtn.addEventListener("click", event => {
+    if(event.target === confirmBtn) {
+        addBtn()
+    }
 })
 
 
@@ -37,7 +46,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-const generateModalTask = (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress = start) => {
+const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
     const titleModal = createElement("input", "modal__title");
     const modalDescription = createElement("input", "modal__description");
@@ -61,7 +70,7 @@ const generateModalTask = (todoId, todoTitle, todoDesk, todoUser, todoTime, isPr
 };
 
 main.addEventListener("click", (event) => {
-    if(event.target === cancelBtn) {
+    if(event.target.dataset.type === "btnCancel") {
         modalWindow.remove()
     }
 });
