@@ -22,17 +22,20 @@ addBtn.addEventListener("click", (event) => {
 })
 
 
-window.addEventListener('keydown', event => {
-    if (event.keyCode === 13) addBtn.click()
+window.addEventListener('keydown', function(event) {
+    const key = event.key;
+    if (key === "Enter") {
+        addBtn.click();
+    }
 })
 
 document.addEventListener('keydown', function(event) {
     const key = event.key;
     if (key === "Escape") {
-        window.close();
+        modalWindow.close();
+        modalWindow.remove;
     }
 });
-
 
 const generateModalTask = (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress = start) => {
     const modalWindow = createElement("div", "modal__window");
