@@ -1,11 +1,9 @@
-function userTime() {
-    (async function () {
-        var data = await fetch('https://worldtimeapi.org/api/timezone/Europe/Minsk');
-        const newFetch = await data.json();
-        root.innerText = (newFetch.datetime.slice(11, -16))
-    })()
-};
-userTime()
-setInterval(userTime, 1000)
+    function myTime () {
+        document.getElementById("time").innerHTML = new Date().toLocaleString("ru", {
+            timeZone: "Europe/Minsk",
+            timeStyle: "short",
+            hourCycle: "h24"
+        })
+    }
 
-export { userTime }
+    export { myTime }
