@@ -1,11 +1,11 @@
 let  arrayOfTodos = [];
 
-const modalCreation = function (modalId, modalTitle, modalDesk, modalUser, modalTime, isProgress) {
-    this.modalId = modalId;
-    this.modalTitle = modalTitle;
-    this.modalDesk = modalDesk;
-    this.modalUser = modalUser;
-    this.modalTime = modalTime;
+const todoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
+    this.todoId = todoId;
+    this.todoTitle = todoTitle;
+    this.todoDesk = todoDesk;
+    this.todoUser = todoUser;
+    this.todoTime = todoTime;
     this.isProgress = isProgress;
 };
 
@@ -13,9 +13,9 @@ add_button.addEventListener("click", (event) => {
     if (input.value === " ")
         return
 
-    const modalId = Date.now();
-    const modal = new modalCreation(modalId, input.value, input.value, input.select, new Date().toString(), start);
-    main.append(generateModalTask(modalId, input.value, input.value, input.select, new Date().toString(), start));
+    const todoId = Date.now();
+    const todo = new todoCreation(todoId, input.value, input.value, input.select, new Date().toString(), start);
+    main.append(generateModalTask(todoId, input.value, input.value, input.select, new Date().toString(), start));
 })
 
 
@@ -24,7 +24,7 @@ window.addEventListener('keydown', event => {
 })
 
 
-const generateModalTask = (modalId, modalTitle, modalDesk, modalUser, modalTime, isProgress = start) => {
+const generateModalTask = (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress = start) => {
     const modalWindow = createElement("div", "modal__window");
     const titleModal = createElement("input", "modal__title");
     const modalDescription = createElement("input", "modal__description");
