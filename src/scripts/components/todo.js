@@ -1,3 +1,5 @@
+let  arrayOfTodos = [];
+
 const modalCreation = function (modalId, modalTitle, modalDesk, modalUser, modalTime, isProgress) {
     this.modalId = modalId;
     this.modalTitle = modalTitle;
@@ -11,7 +13,7 @@ add_button.addEventListener("click", (event) => {
     if (input.value === " ")
         return
 
-    const modalId = Date.now(); // дата для ид модалки
+    const modalId = Date.now();
     const modal = new modalCreation(modalId, input.value, input.value, input.select, new Date().toString(), false);
     main.append(generateModalTask(modalId, input.value, input.value, input.select, new Date().toString(), false));
 })
@@ -20,8 +22,6 @@ add_button.addEventListener("click", (event) => {
 window.addEventListener('keydown', event => {
     if (event.keyCode === 13) addBtn.click()
 })
-
-let  arrayOfTodos = [];
 
 
 const generateModalTask = (modalId, modalTitle, modalDesk, modalUser, modalTime, isProgress = false) => {
@@ -59,7 +59,7 @@ function getUsersFromApi() {
         .then(users => {
             users.forEach(user => {
                 const option = document.createElement("option");
-                // option.className = "modal__item"
+                option.className = "modal__item"
                 option.value = user.username;
                 option.innerText = user.username;
                 timeButton.append(option)
