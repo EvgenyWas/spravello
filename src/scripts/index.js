@@ -56,6 +56,8 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   return todoContainer;
 };
 
+export { generateTodo }
+
 // Launch time in header
 setInterval(myTime, 1000);
 document.addEventListener('DOMContentLoaded', getUsersFromApi);
