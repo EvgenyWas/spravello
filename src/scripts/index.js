@@ -1,4 +1,5 @@
 import { createElement } from './templates/templates.js'
+import { myTime } from './services/worldTimeApi.js'
 
 const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
