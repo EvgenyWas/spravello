@@ -16,6 +16,8 @@ const generateModalTask = () => {
     selectModal.dataset.type = "modalSelect";
     cancelBtn.dataset.type = "btnCancel";
     confirmBtn.dataset.type = "btnConfirm";
+    
+    modalWidonw.append(titleModal, modalDescription, modalOptions, selectModal, cancelBtn, confirmBtn)
 
     return modalWindow;
 }
