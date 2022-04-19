@@ -9,7 +9,6 @@ function generateWarning() {
     "modal-warning__cancel__btn",
     "Cancel"
   );
-  
   const modalConfirmBtn = createElement(
     "button",
     "modal-warning__confirm-btn",
@@ -22,13 +21,13 @@ function generateWarning() {
   modalCancelBtn.dataset.type = "Cancel";
   modalConfirmBtn.dataset.type = "Confirm";
 
-  modalCancelBtn.addEventListener("click", (event) => {
-    const main = document.querySelector(".main");
-
-    main.removeChild(modalContainer);
-  });
-
-  modalConfirmBtn.addEventListener("click", (event) => {});
-
   return modalContainer;
 };
+
+modalCancelBtn.addEventListener("click", (event) => {
+  const main = document.querySelector(".main");
+
+  main.removeChild(modalContainer);
+});
+
+modalConfirmBtn.addEventListener("click", (event) => {});
