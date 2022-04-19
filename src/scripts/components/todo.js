@@ -14,8 +14,8 @@ add_button.addEventListener("click", (event) => {
         return
 
     const modalId = Date.now();
-    const modal = new modalCreation(modalId, input.value, input.value, input.select, new Date().toString(), false);
-    main.append(generateModalTask(modalId, input.value, input.value, input.select, new Date().toString(), false));
+    const modal = new modalCreation(modalId, input.value, input.value, input.select, new Date().toString(), start);
+    main.append(generateModalTask(modalId, input.value, input.value, input.select, new Date().toString(), start));
 })
 
 
@@ -24,7 +24,7 @@ window.addEventListener('keydown', event => {
 })
 
 
-const generateModalTask = (modalId, modalTitle, modalDesk, modalUser, modalTime, isProgress = false) => {
+const generateModalTask = (modalId, modalTitle, modalDesk, modalUser, modalTime, isProgress = start) => {
     const modalWindow = createElement("div", "modal__window");
     const titleModal = createElement("input", "modal__title");
     const modalDescription = createElement("input", "modal__description");
