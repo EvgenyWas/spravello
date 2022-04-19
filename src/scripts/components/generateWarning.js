@@ -1,13 +1,13 @@
 import { createElement } from "../templates/templates.js";
 
 function generateWarning() {
-  const modalContainer = createElement("div", "modal_container");
-  const modalTitle = createElement("h3", "modal_title", "Warning!");
-  const modalButtons = createElement("div", "modal_buttons");
-  const modalCancelBtn = createElement("button", "modal_cancel_btn", "Cancel");
+  const modalContainer = createElement("div", "modal-warning__container");
+  const modalTitle = createElement("h3", "modal-warning__title", "Warning!");
+  const modalButtons = createElement("div", "modal-warning__buttons");
+  const modalCancelBtn = createElement("button", "modal-warning__cancel__btn", "Cancel");
   const modalConfirmBtn = createElement(
     "button",
-    "modal_confirm_btn",
+    "modal-warning__confirm__btn",
     "Confirm"
   );
 
