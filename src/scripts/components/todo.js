@@ -1,4 +1,5 @@
 import { generateTodo } from "../index.js"
+import { getUsersFromApi  } from "../services/getUsersFromApi"
 
 let  arrayOfTodos = [];
 
@@ -56,6 +57,8 @@ const generateModalTask = () => {
     const cancelBtn = createElement("button", "modal__cancel", "Cancel");
     const confirmBtn = createElement("confirm", "modal__confirm", "Confirm");
 
+    getUsersFromApi();
+
     titleModal.placeholder = "Title";
     modalDescription.placeholder = "Description";
     titleModal.dataset.type = "modalTitle";
@@ -75,18 +78,3 @@ main.addEventListener("click", (event) => {
         modalWindow.remove()
     }
 });
-
-function getUsersFromApi() {
-    fetch("https://jsonplaceholder.typicode.com/users?_limit=5")
-        .then(res => res.json())
-        .then(users => {
-            users.forEach(user => {
-                const option = document.createElement("option");
-                option.className = "modal__item"
-                option.value = user.username;
-                option.innerText = user.username;
-                timeButton.append(option)
-            })
-        })
-}
-getUsersFromApi()
