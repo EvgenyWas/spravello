@@ -1,31 +1,37 @@
 // main
 .main{
     display: flex;
+    justify-content: center;
+    max-height: 80vh;
 }
 
-/* Todo */
+
+/* Todo article*/
 .todo{
     display: flex;
     margin: 20px;
     width: 300px;
-    height: 600px;
-    background-color: $secondary-color;
+    height: 100%;
+    max-height: 80vh;
+    background-color: $todo-color;
     border-radius: 5px;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .todo__container{
     display: flex;
     flex-direction: column;
+    max-height: 100%
 }
 
 .todo__header{
     display: flex;
     align-items: center;
     width: 300px;
-    height: 50px;
-    background-color: $primary-color;
-    padding: 5px;
+    min-height: 38px;
+    background-color: $todo-color;
+    padding: 0 25px;
     box-sizing: border-box;
     border-radius: 5px;
 }
@@ -35,24 +41,173 @@
     flex-grow: 1;
 }
 
+.todo__tasks{
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+}
+
 .todo__button{
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    top: 470px;
     width: 290px;
-    height: 50px;
+    min-height: 38px;
     margin: 0 auto;
-    background-color: $primary-color;
+    margin: 5px;
+    background-color: $todo-color;
     border-radius: 5px;
 }
 
-/* task */
+.todo__button:hover {
+    background-color: #881a1b;
+}
+
+.todo__button:active {
+    box-shadow: 0px 0px 11px 5px rgb(69, 4, 4);
+}
+
+/* test task */
 .todo__task{
-    width: 280px;
+    width: 270px;
+    height: 1200px;
     padding: 5px;
-    margin: 5px auto;
+    margin: 10px auto;
     border: 1px solid black;
     border-radius: 5px;
+    z-index: 0;
+    background-color: white;
+}
+
+// In-progress article
+
+// Done article
+
+.inprogress{
+    display: flex;
+    margin: 20px;
+    width: 300px;
+    height: 100%;
+    max-height: 80vh;
+    background-color: $inprogress-color;
+    border-radius: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+
+.inprogress__container{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%
+}
+
+.inprogress__header{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    min-height: 38px;
+    background-color: $inprogress-color;
+    padding: 0 25px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.inprogress__title{
+    display: flex;
+    flex-grow: 1;
+}
+
+.inprogress__tasks{
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+/* done test task */
+.inprogress__task{
+    width: 270px;
+    height: 200px;
+    padding: 5px;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 0;
+    background-color: white;
+}
+
+
+
+// Done article
+
+.done{
+    display: flex;
+    margin: 20px;
+    width: 300px;
+    height: 100%;
+    max-height: 80vh;
+    background-color: $done-color;
+    border-radius: 5px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.done__container{
+    display: flex;
+    flex-direction: column;
+    max-height: 100%
+}
+
+.done__header{
+    display: flex;
+    align-items: center;
+    width: 300px;
+    min-height: 38px;
+    background-color: $done-color;
+    padding: 0 25px;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.done__title{
+    display: flex;
+    flex-grow: 1;
+}
+
+.done__tasks{
+    overflow-x: hidden;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.done__button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 290px;
+    min-height: 38px;
+    margin: 0 auto;
+    margin: 5px;
+    background-color: $done-color;
+    border-radius: 5px;
+}
+
+.done__button:hover {
+    background-color: #738862;
+}
+
+.done__button:active {
+    box-shadow: 0px 0px 11px 5px rgb(109, 100, 100);
+}
+
+/* done test task */
+.done__task{
+    width: 270px;
+    height: 0px;
+    padding: 5px;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 0;
+    background-color: white;
 }
