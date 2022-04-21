@@ -40,6 +40,7 @@ function generateTodo(
   todoEditBtn.dataset.type = "todoEditBtn";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
+  todoElementUser.dataset.type = "todoElementUser";
 
   return todoContainer;
 }

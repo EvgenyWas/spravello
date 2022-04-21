@@ -22,22 +22,6 @@ const todoCreation = function (
 const addBtn = document.querySelector("#add-button");
 export { addBtn };
 
-window.addEventListener("keydown", function (event) {
-  const key = event.key;
-  if (key === "Enter") {
-    addBtn.click();
-  }
-}); // ток для модалки
-
-document.addEventListener("keydown", function (event) {
-  const key = event.key;
-  if (key === "Escape") {
-    // modalWindow.close();
-    // modalWindow.remove;
-    console.log(123);
-  }
-});
-
 const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
     const titleModal = createElement("input", "modal__title");
@@ -49,6 +33,7 @@ const generateModalTask = () => {
   
     titleModal.placeholder = "Title";
     modalDescription.placeholder = "Description";
+    modalWindow.dataset.type = "windowModal"
     titleModal.dataset.type = "modalTitle";
     modalDescription.dataset.type = "descriptionModal";
     selectModal.dataset.type = "modalSelect";
@@ -70,7 +55,10 @@ main.addEventListener("click", (event) => {
     target.parentNode.parentNode.remove();
     const title = event.target.parentNode.previousSibling.previousSibling;
     const desk = event.target.parentNode.previousSibling;
-    const modalSelect = event.target.parentNode.previousSibling;
+    const todoUser = event.target.previousSibling.previousSibling;
+    if(title.value === "" || desk.value === "") {
+        return
+    }
 
     const todoId = Date.now();
     const todoBox = document.getElementById("todo-box");
@@ -78,7 +66,7 @@ main.addEventListener("click", (event) => {
       todoId,
       title.value,
       desk.value,
-      modalSelect.option,
+      todoUser.value,
       new Date().toLocaleString("ru").slice(0, -3),
       "start"
     );
@@ -87,7 +75,7 @@ main.addEventListener("click", (event) => {
         todoId,
         title.value,
         desk.value,
-        modalSelect.option,
+        todoUser.value,
         new Date().toLocaleString("ru").slice(0, -3),
         "start"
       )
@@ -114,3 +102,24 @@ export { generateModalTask };
 // search.addEventListener("click", (event) => {
 //   event.preventDefault();
 // }); заглушка на серч
+
+window.addEventListener("keydown", function (event) {
+    const { target } = event;
+    const { dataset } = target;
+    const key = event.key;
+    if (dataset.type === "btnConfirm") 
+    if (key === "Enter") {
+        console.log(123);
+}
+  }); // ток для модалки
+  
+//   document.addEventListener("keydown", function (event) {
+//     const { target } = event;
+//     const { dataset } = target;
+    
+//   if (target === event.curentTarget) return;
+//    if (event.target.dataset.type === "windowModal") {
+//         // windowModal.remove;
+//       console.log(123);
+//     }
+//   });
