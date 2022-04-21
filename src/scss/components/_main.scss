@@ -227,3 +227,11 @@
 .overlay.is-show{
     display: block;
 }
+
+@include xl{
+    .main{
+        overflow-y: auto;
+        overflow-x: scroll;
+        background-color: #881a1b;
+    }
+}

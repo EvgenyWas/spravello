@@ -5,10 +5,10 @@
     top: 25vh;
     width: 400px;
     height: 250px;
-    padding: 10px;
+    padding: 20px;
     background-color: $todo-color;
-    border: 5px solid black;
-    border-radius: 10px;
+    border: 2px solid #740406;
+    border-radius: 40px;
     z-index: 30;
 }
 
@@ -20,13 +20,13 @@
     margin: 5px;
     border-radius: 5px;
     padding: 3px;
-    background-color: green;
+    background-color: whitesmoke;
 }
 
 .modal__description{
     display: flex;
     overflow-wrap: break-word;
-    background-color: blue;
+    background-color: whitesmoke;
     width: 97%;
     height: 55%;
     border-radius: 15px;
@@ -37,8 +37,7 @@
 .modal__options{
     display: flex;
     margin: 20px auto 0 auto;
-    width: 90%;
-    background-color: yellow;   
+    width: 95%;   
 }
 
 .modal__list{
@@ -46,15 +45,16 @@
     text-align: center;
     width: 50%;
     border-radius: 5px;
-    background-color: aqua;
-    margin-right: 30px;
+    background-color: whitesmoke;
+    margin-right: 35px;
     padding: 3px;
 }
 
 .modal__cancel{
     display: flex;
     text-align: center;
-    background-color: coral;
+    border-radius: 5px;
+    background-color: whitesmoke;
     margin-right: 20px;
     padding: 3px;
 }
@@ -62,6 +62,7 @@
 .modal__confirm{
     display: flex;
     text-align: center;
-    background-color: coral;
+    border-radius: 5px;
+    background-color: whitesmoke;
     padding: 3px;
 }

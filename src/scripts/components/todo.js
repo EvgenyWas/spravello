@@ -20,8 +20,8 @@ const TodoCreation = function (
 
 const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
-    const titleModal = createElement("input", "modal__title");
-    const modalDescription = createElement("input", "modal__description");
+    const titleModal = createElement("textarea", "modal__title");                // change input to textarea
+    const modalDescription = createElement("textarea", "modal__description");    // change input to textarea
     const modalOptions = createElement("div", "modal__options");
     const selectModal = createElement("select", "modal__list", "Select User");
     const cancelBtn = createElement("button", "modal__cancel", "Сancel");
