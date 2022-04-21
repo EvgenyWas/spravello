@@ -1,0 +1,67 @@
+.modal__window{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 25vh;
+    width: 400px;
+    height: 250px;
+    padding: 10px;
+    background-color: $todo-color;
+    border: 5px solid black;
+    border-radius: 10px;
+    z-index: 30;
+}
+
+.modal__title{
+    display: flex;
+    overflow-wrap: break-word;
+    width: 50%;
+    max-height: 30%;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: green;
+}
+
+.modal__description{
+    display: flex;
+    overflow-wrap: break-word;
+    background-color: blue;
+    width: 97%;
+    height: 55%;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.modal__options{
+    display: flex;
+    margin: 20px auto 0 auto;
+    width: 90%;
+    background-color: yellow;   
+}
+
+.modal__list{
+    display: flex;
+    text-align: center;
+    width: 50%;
+    border-radius: 5px;
+    background-color: aqua;
+    margin-right: 30px;
+    padding: 3px;
+}
+
+.modal__cancel{
+    display: flex;
+    text-align: center;
+    background-color: coral;
+    margin-right: 20px;
+    padding: 3px;
+}
+
+.modal__confirm{
+    display: flex;
+    text-align: center;
+    background-color: coral;
+    padding: 3px;
+}
