@@ -10,8 +10,23 @@ $screen-lg-max: 992px;
 // Large tablets and desktops
 $screen-xl-max: 1200px;
 
-// Primary color
+// Primary color (header)
 $primary-color: #CBDEF6;
 
-//Secondary color
-$secondary-color: #EBECF0;
+//Secondary color (wrapper)
+$secondary-color: #fefae0;
+
+// third color (todo buttons and todo header)
+$third-color: #EBECF0;
+
+// fourth color (todo lists background)
+$fourth-color: #EBECF0;
+
+// todo color
+$todo-color: #F94144;
+
+// in-progress color
+$inprogress-color: #F3722C;
+
+// done color
+$done-color: #90BE6D;
