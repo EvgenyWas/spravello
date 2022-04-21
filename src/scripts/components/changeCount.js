@@ -1,6 +1,8 @@
-const todobox = document.querySelector("#todo-box");
-const inprogresBox = document.querySelector("#inprogress-box");
-const doneBox = document.querySelector("#done-box");
+const nodes = {
+todobox: document.querySelector("#todo-box"),
+inprogresBox: document.querySelector("#inprogress-box"),
+doneBox: document.querySelector("#done-box"),
+};
 
 const Counter = function ({ todobox, inprogresBox, doneBox }) {
   this.todobox = todobox,
