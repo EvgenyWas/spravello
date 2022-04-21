@@ -13,14 +13,8 @@
             <div class="header__box">
                 <h2 class="header__title">Trello</h2>
                 <form class="header__form">
-                    <select id="Filter">
-                        <option id="filter-value" value="1">Filter by Users</option>
-                        <option id="filter-value-users"value="2">Users</option>
-                    </select>
-                    <button type="button" class="header__form-btn" id="filter-button">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
-                        <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
-                    </svg></button>
+                    <input type="text" class="header__form-search" id="seacrh-by-title">
+                    <button class="header__form-btn" id="seacrh-button">search</button>
                 </form>
                 <div class="header__box-time">
                     <time class="header__time" id="time"></time>
@@ -35,37 +29,29 @@
                         <div class="todo__title">Todo:</div>
                         <span class="todo__counter" id="todo-counter">2</span>
                     </div>
-                    <div class="todo__tasks" id="todo-tasks">
-                        <div class="todo__task" id="todo-box"></div>
-                        <div class="todo__task" id="todo-box"></div>
-                        <div class="todo__task" id="todo-box"></div>
-                    </div>
+                    <div class="todo__task" id="todo-box"></div>
                     <div class="todo__button" id="add-button">Add todo</div>
                 </div>
             </article>
             <!-- second article -->
-            <article class="inprogress">
-                <div class="inprogress__container">
-                    <div class="inprogress__header">
-                        <div class="inprogress__title">In Progress:</div>
-                        <span class="inprogress__counter" id="inprogress-counter">1</span>
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__title">In Progress:</div>
+                        <span class="todo__counter" id="inprogress-counter">1</span>
                     </div>
-                    <div class="inprogress__task" id="inprogress-tasks">
-                        <div class="todo__task-done" id="inprogress-box"></div>
-                    </div>
+                    <div class="todo__task" id="inprogress-box"></div>
                 </div>
             </article>
             <!-- third article -->
-            <article class="done">
-                <div class="done__container">
-                    <div class="done__header">
-                        <div class="done__title">Done:</div>
-                        <span class="done__counter" id="done-counter">1</span>
+            <article class="todo">
+                <div class="todo__container">
+                    <div class="todo__header">
+                        <div class="todo__title">Done:</div>
+                        <span class="todo__counter" id="done-counter">1</span>
                     </div>
-                    <div class="done__tasks" id="done-tasks">
-                        <div class="done__task" id="complete-box"></div>
-                    </div>
-                    <div class="done__button" id="deleteall-button">Delete all</div>
+                    <div class="todo__task" id="complete-box"></div>
+                    <div class="todo__button" id="deleteall-button">Delete all</div>
                 </div>
             </article>
         </main>
