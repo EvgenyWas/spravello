@@ -1,6 +1,6 @@
 .header{
-    background-color: $primary-color;
-    width: 80vw;
+    background-color: #985277;
+    width: 70vw;
     height: 50px;
     margin: 0 auto;
     border-radius: 10px;
@@ -28,9 +28,6 @@
 }
 
 .header__form-btn{
-    height: 25px;
-    width: 50px;
-    border: 1px solid black;
-    border-radius: 5px;
-    vertical-align: middle;
+    margin-right: 20px;
 }
+
