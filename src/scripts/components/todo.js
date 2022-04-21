@@ -2,15 +2,14 @@ import { createElement } from "../templates/templates";
 import { generateTodo } from "../index"
 
 let arrayOfTodos = [];
-
-const todoCreation = function (
+const addBtn = document.querySelector("#add-button");
+const TodoCreation = function (
   todoId,
   todoTitle,
   todoDesk,
   todoSelect,
   todoTime,
-  isProgress
-) {
+  isProgress){
   this.todoId = todoId;
   this.todoTitle = todoTitle;
   this.todoDesk = todoDesk;
@@ -18,9 +17,6 @@ const todoCreation = function (
   this.todoTime = todoTime;
   this.isProgress = isProgress;
 };
-
-const addBtn = document.querySelector("#add-button");
-export { addBtn };
 
 const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
@@ -30,39 +26,41 @@ const generateModalTask = () => {
     const selectModal = createElement("select", "modal__list", "Select User");
     const cancelBtn = createElement("button", "modal__cancel", "Сancel");
     const confirmBtn = createElement("button", "modal__confirm", "Confirm");
-  
+
     titleModal.placeholder = "Title";
     modalDescription.placeholder = "Description";
-    modalWindow.dataset.type = "windowModal"
+    modalWindow.dataset.type = "windowModal";
     titleModal.dataset.type = "modalTitle";
     modalDescription.dataset.type = "descriptionModal";
     selectModal.dataset.type = "modalSelect";
     cancelBtn.dataset.type = "btnCancel";
     confirmBtn.dataset.type = "btnConfirm";
-  
+
     modalOptions.append(selectModal, cancelBtn, confirmBtn);
     modalWindow.append(titleModal, modalDescription, modalOptions);
-  
+
     return modalWindow;
 };
 
 main.addEventListener("click", (event) => {
   const { target } = event;
   const { dataset } = target;
-
   if (target === event.curentTarget) return;
-  if (event.target.dataset.type === "btnConfirm") {
-    target.parentNode.parentNode.remove();
-    const title = event.target.parentNode.previousSibling.previousSibling;
-    const desk = event.target.parentNode.previousSibling;
-    const todoUser = event.target.previousSibling.previousSibling;
-    if(title.value === "" || desk.value === "") {
-        return
-    }
 
+  if (dataset.type === "btnCancel") {
+    target.parentNode.parentNode.remove();
+  };
+
+  if (dataset.type === "btnConfirm") {
+    const title = target.parentNode.previousSibling.previousSibling;
+    const desk = target.parentNode.previousSibling;
+    const todoUser = target.previousSibling.previousSibling;
     const todoId = Date.now();
-    const todoBox = document.getElementById("todo-box");
-    const todo = new todoCreation(
+    const todoBox = document.getElementById("todo-tasks");
+    if (title.value === "" || desk.value === "") return;
+    target.parentNode.parentNode.remove();
+
+    const todo = new TodoCreation(
       todoId,
       title.value,
       desk.value,
@@ -70,32 +68,58 @@ main.addEventListener("click", (event) => {
       new Date().toLocaleString("ru").slice(0, -3),
       "start"
     );
-    todoBox.append(
-      generateTodo(
-        todoId,
-        title.value,
-        desk.value,
-        todoUser.value,
-        new Date().toLocaleString("ru").slice(0, -3),
-        "start"
-      )
-    );
+
+    todoBox.append(generateTodo(
+      todoId,
+      title.value,
+      desk.value,
+      todoUser.value,
+      new Date().toLocaleString("ru").slice(0, -3),
+      "start"));
     arrayOfTodos.push(todo);
     title.value = "";
     desk.value = "";
-  }
+  };
+
+  if (dataset.type === 'todoDeleteBtn') {
+    let selectedTodoDelete = arrayOfTodos.findIndex((todo) => +todo.todoId === +target.closest(".task").dataset.id);
+    target.closest(".task").remove();
+    arrayOfTodos.splice(selectedTodoDelete, 1);
+  };
+
+  if (dataset.type === 'todoConversionBtn') {
+    console.log(target.closest(".task").dataset.todoId);
+    const selectedTodo = arrayOfTodos.findIndex((todo) => +todo.todoId === +target.closest(".task").dataset.id);
+    const inprogress = document.querySelector('#inprogress-tasks');
+    console.log(selectedTodo);
+
+    arrayOfTodos[selectedTodo].isProgress = "inProgress";
+    console.log(arrayOfTodos);
+    target.closest(".task").remove();
+    const targetTodo = arrayOfTodos[selectedTodo];
+    inprogress.append(generateTodo(
+      targetTodo.todoId,
+      targetTodo.todoTitle,
+      targetTodo.todoDesk,
+      targetTodo.todoUser,
+      targetTodo.todoTime,
+      targetTodo.isProgress));
+  };
 });
 
-main.addEventListener("click", (event) => {
-  const { target } = event;
-  const { dataset } = target;
+// Function of an event for click on delete in todo
+// function removeTodo(event) {
+  
+// }
+// todoContainer.addEventListener("click", removeTodo);
 
-  if (target === event.curentTarget) return;
-  if (dataset.type === "btnCancel") {
-    target.parentNode.parentNode.remove();
-  }
-});
+// Fucntion of an event for click on move in todo
+// function moveTodo(event) {
+  
+// }
+// todoContainer.addEventListener("click", moveTodo);
 
+export { addBtn };
 export { generateModalTask };
 
 // const search = document.getElementById("seacrh-button");

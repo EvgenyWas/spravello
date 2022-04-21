@@ -8,22 +8,15 @@ import { generateModalTask } from "./components/todo.js"
 
 
 // Function for generate Todo
-function generateTodo(
-  todoId,
-  todoTitle,
-  todoDesk,
-  todoUser,
-  todoTime,
-  isProgress
-) {
-  const todoContainer = createElement("div", "container");
-  const todoElementTitle = createElement("h4", "title_todo", todoTitle);
-  const todoElementDescription = createElement("p","description_todo", todoDesk);
-  const todoElementUser = createElement("p", "user_todo", todoUser);
-  const todoEditBtn = createElement("button", "edit_button", "Edit");
-  const todoDeleteBtn = createElement("button", "delete_button", "Delete");
-  const todoElementTime = createElement("span", "time_todo ", todoTime);
-  const todoConversionBtn = createElement("button", "conversion_todo", "➣");
+function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
+  const todoContainer = createElement("div", "task");
+  const todoElementTitle = createElement("h4", "task__title", todoTitle);
+  const todoElementDescription = createElement("p","task__desc", todoDesk);
+  const todoElementUser = createElement("p", "task__user", todoUser);
+  const todoEditBtn = createElement("button", "task__btn-edit", "Edit");
+  const todoDeleteBtn = createElement("button", "task__btn-delete", "Delete");
+  const todoElementTime = createElement("span", "task__time", todoTime);
+  const todoConversionBtn = createElement("button", "task__conversion", "➣");
 
   todoContainer.append(
     todoElementTitle,
@@ -40,7 +33,6 @@ function generateTodo(
   todoEditBtn.dataset.type = "todoEditBtn";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
-  todoElementUser.dataset.type = "todoElementUser";
 
   return todoContainer;
 }
