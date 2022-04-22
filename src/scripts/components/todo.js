@@ -62,8 +62,8 @@ main.addEventListener("click", (event) => {
     const todoUser = target.previousSibling.previousSibling;
     const todoId = Date.now();
     const todoBox = document.getElementById("todo-tasks");
-    overlay.classList.remove("is-show"); // add by david (remove non click overlay)
     if (title.value === "" || desk.value === "") return;
+    overlay.classList.remove("is-show"); // add by david (remove non click overlay)
     target.parentNode.parentNode.remove();
 
     const todo = new TodoCreation(
@@ -109,7 +109,7 @@ main.addEventListener("click", (event) => {
       targetTodo.todoDesk,
       targetTodo.todoUser,
       targetTodo.todoTime,
-      targetTodo.isProgress));
+      targetTodo.isProgress)) ;
   };
 });
 
@@ -125,7 +125,7 @@ main.addEventListener("click", (event) => {
 // }
 // todoContainer.addEventListener("click", moveTodo);
 
-export { addBtn };
+export { addBtn, arrayOfTodos };
 export { generateModalTask };
 
 // const search = document.getElementById("seacrh-button");

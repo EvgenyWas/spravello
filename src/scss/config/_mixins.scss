@@ -25,3 +25,22 @@
         @content;
     }
  }
+
+ @mixin btn {
+    padding: 1px 8px;
+   //  border: 2px solid #1957db;
+    border: 2px solid $third-color;
+    border-radius: 5px;
+    color: black; 
+    background-color: white;
+ }
+
+ @mixin btn-hoover {
+    background-color: $third-color;
+    color: white;
+ }
+
+ @mixin btn-active {
+   //  box-shadow: 0px 0px 2px 3px rgb(122, 119, 122);
+    box-shadow: 0px 0px 6px 3px rgb(98, 98, 98);
+ }
