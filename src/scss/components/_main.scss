@@ -13,7 +13,8 @@
     width: 300px;
     height: 100%;
     max-height: 80vh;
-    background-color: $todo-color;
+    // background-color: $todo-color;
+    background-color: $third-color;
     border-radius: 5px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -30,7 +31,8 @@
     align-items: center;
     width: 300px;
     min-height: 38px;
-    background-color: $todo-color;
+    // background-color: $todo-color;
+    background-color: $third-color;
     padding: 0 25px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -55,16 +57,19 @@
     min-height: 38px;
     margin: 0 auto;
     margin: 5px;
-    background-color: $todo-color;
+    // background-color: $todo-color;
+    background-color: $third-color;
     border-radius: 5px;
 }
 
 .todo__button:hover {
-    background-color: #881a1b;
+    // background-color: #881a1b;
+    background-color: #9b9ca0;
 }
 
 .todo__button:active {
-    box-shadow: 0px 0px 11px 5px rgb(69, 4, 4);
+    // box-shadow: 0px 0px 11px 5px rgb(69, 4, 4);
+    box-shadow: 0px 0px 6px 3px rgb(98, 98, 98);
 }
 
 /* test task */
@@ -89,7 +94,8 @@
     width: 300px;
     height: 100%;
     max-height: 80vh;
-    background-color: $inprogress-color;
+    // background-color: $inprogress-color;
+    background-color: $third-color;
     border-radius: 5px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -107,7 +113,8 @@
     align-items: center;
     width: 300px;
     min-height: 38px;
-    background-color: $inprogress-color;
+    // background-color: $inprogress-color;
+    background-color: $third-color;
     padding: 0 25px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -146,7 +153,8 @@
     width: 300px;
     height: 100%;
     max-height: 80vh;
-    background-color: $done-color;
+    // background-color: $done-color;
+    background-color: $third-color;
     border-radius: 5px;
     overflow-x: auto;
     overflow-y: hidden;
@@ -163,7 +171,8 @@
     align-items: center;
     width: 300px;
     min-height: 38px;
-    background-color: $done-color;
+    // background-color: $done-color;
+    background-color: $third-color;
     padding: 0 25px;
     box-sizing: border-box;
     border-radius: 5px;
@@ -188,16 +197,19 @@
     min-height: 38px;
     margin: 0 auto;
     margin: 5px;
-    background-color: $done-color;
+    // background-color: $done-color;   // Tasks containers different color
+    background-color: $third-color;
     border-radius: 5px;
 }
 
 .done__button:hover {
-    background-color: #738862;
+    // background-color: #738862;
+    background-color: #9b9ca0;
 }
 
 .done__button:active {
-    box-shadow: 0px 0px 11px 5px rgb(109, 100, 100);
+    // box-shadow: 0px 0px 11px 5px rgb(109, 100, 100);
+    box-shadow: 0px 0px 6px 3px rgb(98, 98, 98);
 }
 
 /* done test task */
@@ -228,10 +240,12 @@
     display: block;
 }
 
-@include xl{
-    .main{
-        overflow-y: auto;
-        overflow-x: scroll;
-        background-color: #881a1b;
-    }
-}
+// @include xl{
+//     .main{
+//         display: flex;
+//         overflow-y: auto;
+//         overflow-x: scroll;
+//         background-color: #881a1b;
+//     }
+// }
+

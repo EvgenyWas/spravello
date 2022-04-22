@@ -3,38 +3,79 @@
     width: 270px;
     padding: 5px;
     margin: 10px auto;
-    border: 1px solid black;
+    border: 2px solid rgb(162, 22, 22);
     border-radius: 5px;
     z-index: 0;
-    background-color: white;
+    background-color: $todo-color;
+}
+
+.task--inprogress{
+    background-color: $inprogress-color;
+    border: 2px solid rgb(226, 126, 11);
+}
+
+.task__header{
+    display: flex;
+    padding: 2px;
 }
 
 .task__title{
     word-break: break-all;
-    background-color: aqua;
+    padding: 2px;
+    font-weight: 650;
 }
 
 .task__desc{
     word-break: break-all;
-    background-color: bisque;
+    padding: 2px;
 }
 
 .task__user{
-    background-color: rgb(245, 179, 230);
+    flex-grow: 1;
 }
 
 .task__btn-edit{
-    background-color: green;
+    @include btn;
+    margin-right: 10px;
+
+    &:hover{
+        @include btn-hoover;
+    }
+
+    &:active{
+        @include btn-active;
+    }
 }
 
 .task__btn-delete{
-    background-color: yellow;
+    @include btn;
+    margin-right: 95px;
+    &:hover{
+        @include btn-hoover;
+    }
+
+    &:active{
+        @include btn-active;
+    }
 }
 
-.task__time{
-    background-color: orange;
-}
+// .task__time{
+//     background-color: orange;
+// }
 
 .task__conversion{
-    background-color: pink;
+    @include btn;
+
+    &:hover{
+        @include btn-hoover;
+    }
+
+    &:active{
+        @include btn-active;
+    }
+}
+
+.task__footer{
+    display: flex;
+    padding: 3px;
 }

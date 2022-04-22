@@ -53,16 +53,27 @@
 .modal__cancel{
     display: flex;
     text-align: center;
-    border-radius: 5px;
-    background-color: whitesmoke;
     margin-right: 20px;
     padding: 3px;
+    @include btn;
+    &:hover{
+        @include btn-hoover;
+    }
+    &:active{
+        @include btn-active;
+    }
 }
 
 .modal__confirm{
     display: flex;
     text-align: center;
-    border-radius: 5px;
-    background-color: whitesmoke;
     padding: 3px;
+    @include btn;
+    &:hover{
+        @include btn-hoover;
+    }
+    &:active{
+        @include btn-active;
+    }
+
 }
