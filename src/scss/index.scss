@@ -1,6 +1,9 @@
 @import "./config/resets.scss";
 @import "./config/base.scss";
 @import "./config/variables.scss";
+@import "./config/mixins.scss";
 
 @import "./components/header.scss";
 @import "./components/main.scss";
+@import "./components/modal_window.scss";
+@import "./components/todo_task.scss";

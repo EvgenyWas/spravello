@@ -1,0 +1,40 @@
+.task{
+    box-sizing: border-box;
+    width: 270px;
+    padding: 5px;
+    margin: 10px auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 0;
+    background-color: white;
+}
+
+.task__title{
+    word-break: break-all;
+    background-color: aqua;
+}
+
+.task__desc{
+    word-break: break-all;
+    background-color: bisque;
+}
+
+.task__user{
+    background-color: rgb(245, 179, 230);
+}
+
+.task__btn-edit{
+    background-color: green;
+}
+
+.task__btn-delete{
+    background-color: yellow;
+}
+
+.task__time{
+    background-color: orange;
+}
+
+.task__conversion{
+    background-color: pink;
+}

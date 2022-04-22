@@ -20,8 +20,8 @@ const TodoCreation = function (
 
 const generateModalTask = () => {
     const modalWindow = createElement("div", "modal__window");
-    const titleModal = createElement("input", "modal__title");
-    const modalDescription = createElement("input", "modal__description");
+    const titleModal = createElement("textarea", "modal__title");                // change input to textarea
+    const modalDescription = createElement("textarea", "modal__description");    // change input to textarea
     const modalOptions = createElement("div", "modal__options");
     const selectModal = createElement("select", "modal__list", "Select User");
     const cancelBtn = createElement("button", "modal__cancel", "Сancel");
@@ -36,9 +36,13 @@ const generateModalTask = () => {
     cancelBtn.dataset.type = "btnCancel";
     confirmBtn.dataset.type = "btnConfirm";
 
+    // trying to add non click overlay (David)
+    const overlay = document.getElementById("overlay");
+    overlay.classList.add("is-show");
+
     modalOptions.append(selectModal, cancelBtn, confirmBtn);
     modalWindow.append(titleModal, modalDescription, modalOptions);
-
+    
     return modalWindow;
 };
 
@@ -48,7 +52,8 @@ main.addEventListener("click", (event) => {
   if (target === event.curentTarget) return;
 
   if (dataset.type === "btnCancel") {
-    target.parentNode.parentNode.remove();
+    target.parentNode.parentNode.remove(); 
+    overlay.classList.remove("is-show"); // add by david (remove non click overlay)
   };
 
   if (dataset.type === "btnConfirm") {
@@ -57,6 +62,7 @@ main.addEventListener("click", (event) => {
     const todoUser = target.previousSibling.previousSibling;
     const todoId = Date.now();
     const todoBox = document.getElementById("todo-tasks");
+    overlay.classList.remove("is-show"); // add by david (remove non click overlay)
     if (title.value === "" || desk.value === "") return;
     target.parentNode.parentNode.remove();
 
