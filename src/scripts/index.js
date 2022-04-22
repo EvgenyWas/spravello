@@ -18,7 +18,7 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   const todoEditBtn = createElement("button", "task__btn-edit", "Edit");
   const todoDeleteBtn = createElement("button", "task__btn-delete", "Delete");
   const todoElementTime = createElement("span", "task__time", todoTime);
-  const todoConversionBtn = createElement("button", "task__conversion", "➣");
+  const todoConversionBtn = createElement("button", "task__btn-conversion", "➣");
 
   todoContainerHeader.append(             // append buttons in task__header_div
     todoEditBtn,
@@ -44,9 +44,7 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
 
-  console.log(arrayOfTodos);
   todoContainer.className = (isProgress === "inProgress") ? "task task--inprogress" : "task";
-  console.log(arrayOfTodos);
 
   return todoContainer;
 }

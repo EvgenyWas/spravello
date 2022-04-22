@@ -1,15 +1,10 @@
 import { createElement } from "../templates/templates";
-import { generateTodo } from "../index"
+import { generateTodo } from "../index";
+import { changeCount } from "./changeCount";
 
 let arrayOfTodos = [];
 const addBtn = document.querySelector("#add-button");
-const TodoCreation = function (
-  todoId,
-  todoTitle,
-  todoDesk,
-  todoSelect,
-  todoTime,
-  isProgress){
+const TodoCreation = function (todoId, todoTitle, todoDesk, todoSelect, todoTime,isProgress){
   this.todoId = todoId;
   this.todoTitle = todoTitle;
   this.todoDesk = todoDesk;
@@ -19,31 +14,31 @@ const TodoCreation = function (
 };
 
 const generateModalTask = () => {
-    const modalWindow = createElement("div", "modal__window");
-    const titleModal = createElement("textarea", "modal__title");                // change input to textarea
-    const modalDescription = createElement("textarea", "modal__description");    // change input to textarea
-    const modalOptions = createElement("div", "modal__options");
-    const selectModal = createElement("select", "modal__list", "Select User");
-    const cancelBtn = createElement("button", "modal__cancel", "Сancel");
-    const confirmBtn = createElement("button", "modal__confirm", "Confirm");
+  const modalWindow = createElement("div", "modal__window");
+  const titleModal = createElement("textarea", "modal__title");                // change input to textarea
+  const modalDescription = createElement("textarea", "modal__description");    // change input to textarea
+  const modalOptions = createElement("div", "modal__options");
+  const selectModal = createElement("select", "modal__list", "Select User");
+  const cancelBtn = createElement("button", "modal__cancel", "Сancel");
+  const confirmBtn = createElement("button", "modal__confirm", "Confirm");
 
-    titleModal.placeholder = "Title";
-    modalDescription.placeholder = "Description";
-    modalWindow.dataset.type = "windowModal";
-    titleModal.dataset.type = "modalTitle";
-    modalDescription.dataset.type = "descriptionModal";
-    selectModal.dataset.type = "modalSelect";
-    cancelBtn.dataset.type = "btnCancel";
-    confirmBtn.dataset.type = "btnConfirm";
+  titleModal.placeholder = "Title";
+  modalDescription.placeholder = "Description";
+  modalWindow.dataset.type = "windowModal";
+  titleModal.dataset.type = "modalTitle";
+  modalDescription.dataset.type = "descriptionModal";
+  selectModal.dataset.type = "modalSelect";
+  cancelBtn.dataset.type = "btnCancel";
+  confirmBtn.dataset.type = "btnConfirm";
 
-    // trying to add non click overlay (David)
-    const overlay = document.getElementById("overlay");
-    overlay.classList.add("is-show");
+  // trying to add non click overlay (David)
+  const overlay = document.getElementById("overlay");
+  overlay.classList.add("is-show");
 
-    modalOptions.append(selectModal, cancelBtn, confirmBtn);
-    modalWindow.append(titleModal, modalDescription, modalOptions);
+  modalOptions.append(selectModal, cancelBtn, confirmBtn);
+  modalWindow.append(titleModal, modalDescription, modalOptions);
     
-    return modalWindow;
+  return modalWindow;
 };
 
 main.addEventListener("click", (event) => {
@@ -82,25 +77,27 @@ main.addEventListener("click", (event) => {
       todoUser.value,
       new Date().toLocaleString("ru").slice(0, -3),
       "start"));
+    
     arrayOfTodos.push(todo);
     title.value = "";
     desk.value = "";
+
+    changeCount();
   };
 
   if (dataset.type === 'todoDeleteBtn') {
     let selectedTodoDelete = arrayOfTodos.findIndex((todo) => +todo.todoId === +target.closest(".task").dataset.id);
     target.closest(".task").remove();
     arrayOfTodos.splice(selectedTodoDelete, 1);
+
+    changeCount();
   };
 
   if (dataset.type === 'todoConversionBtn') {
-    console.log(target.closest(".task").dataset.todoId);
     const selectedTodo = arrayOfTodos.findIndex((todo) => +todo.todoId === +target.closest(".task").dataset.id);
     const inprogress = document.querySelector('#inprogress-tasks');
-    console.log(selectedTodo);
 
     arrayOfTodos[selectedTodo].isProgress = "inProgress";
-    console.log(arrayOfTodos);
     target.closest(".task").remove();
     const targetTodo = arrayOfTodos[selectedTodo];
     inprogress.append(generateTodo(
@@ -111,6 +108,8 @@ main.addEventListener("click", (event) => {
       targetTodo.todoTime,
       targetTodo.isProgress)) ;
   };
+
+  changeCount();
 });
 
 // Function of an event for click on delete in todo
