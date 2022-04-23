@@ -1,6 +1,5 @@
 import { changeCount } from "./changeCount";
-import { generateModalTask } from "./functionsForDom";
-import { generateTodo } from "./functionsForDom";
+import { generateModalTask, generateTodo } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
 
 let arrayOfTodos = [];

@@ -1,8 +1,7 @@
 import { createElement } from "./templates/templates";
 import { myTime } from "./services/worldTimeApi";
 import { getUsersFromApi } from "./services/getUsersFromApi";
-import { addBtn } from "./components/todo.js";
-import { generateModalTask, arrayOfTodos} from "./components/todo.js"
+import { addBtn, generateModalTask, arrayOfTodos} from "./components/todo.js"
 import { generateTodo } from "./components/functionsForDom";
 
 // Launch time in header
