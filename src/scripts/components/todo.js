@@ -4,19 +4,19 @@ import { changeCount } from "./changeCount";
 
 let arrayOfTodos = [];
 const addBtn = document.querySelector("#add-button");
-const TodoCreation = function (todoId, todoTitle, todoDesk, todoSelect, todoTime,isProgress){
+const TodoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime,isProgress){
   this.todoId = todoId;
   this.todoTitle = todoTitle;
   this.todoDesk = todoDesk;
-  this.todoSelect = todoSelect;
+  this.todoUser = todoUser;
   this.todoTime = todoTime;
   this.isProgress = isProgress;
 };
 
 const generateModalTask = () => {
   const modalWindow = createElement("div", "modal__window");
-  const titleModal = createElement("textarea", "modal__title");                // change input to textarea
-  const modalDescription = createElement("textarea", "modal__description");    // change input to textarea
+  const titleModal = createElement("textarea", "modal__title");
+  const modalDescription = createElement("textarea", "modal__description");
   const modalOptions = createElement("div", "modal__options");
   const selectModal = createElement("select", "modal__list", "Select User");
   const cancelBtn = createElement("button", "modal__cancel", "Сancel");
@@ -30,8 +30,9 @@ const generateModalTask = () => {
   selectModal.dataset.type = "modalSelect";
   cancelBtn.dataset.type = "btnCancel";
   confirmBtn.dataset.type = "btnConfirm";
+  confirmBtn.id = "confirmBtnId"
+  cancelBtn.id = "cancelBtnId"
 
-  // trying to add non click overlay (David)
   const overlay = document.getElementById("overlay");
   overlay.classList.add("is-show");
 
@@ -48,7 +49,7 @@ main.addEventListener("click", (event) => {
 
   if (dataset.type === "btnCancel") {
     target.parentNode.parentNode.remove(); 
-    overlay.classList.remove("is-show"); // add by david (remove non click overlay)
+    overlay.classList.remove("is-show");
   };
 
   if (dataset.type === "btnConfirm") {
@@ -58,7 +59,7 @@ main.addEventListener("click", (event) => {
     const todoId = Date.now();
     const todoBox = document.getElementById("todo-tasks");
     if (title.value === "" || desk.value === "") return;
-    overlay.classList.remove("is-show"); // add by david (remove non click overlay)
+    overlay.classList.remove("is-show");
     target.parentNode.parentNode.remove();
 
     const todo = new TodoCreation(
@@ -112,18 +113,6 @@ main.addEventListener("click", (event) => {
   changeCount();
 });
 
-// Function of an event for click on delete in todo
-// function removeTodo(event) {
-  
-// }
-// todoContainer.addEventListener("click", removeTodo);
-
-// Fucntion of an event for click on move in todo
-// function moveTodo(event) {
-  
-// }
-// todoContainer.addEventListener("click", moveTodo);
-
 export { addBtn, arrayOfTodos };
 export { generateModalTask };
 
@@ -132,23 +121,18 @@ export { generateModalTask };
 //   event.preventDefault();
 // }); заглушка на серч
 
-window.addEventListener("keydown", function (event) {
-    const { target } = event;
-    const { dataset } = target;
-    const key = event.key;
-    if (dataset.type === "btnConfirm") 
-    if (key === "Enter") {
-        console.log(123);
-}
-  }); // ток для модалки
-  
-//   document.addEventListener("keydown", function (event) {
-//     const { target } = event;
-//     const { dataset } = target;
-    
-//   if (target === event.curentTarget) return;
-//    if (event.target.dataset.type === "windowModal") {
-//         // windowModal.remove;
-//       console.log(123);
-//     }
-//   });
+document.addEventListener("keydown", (event) => {
+  const enterButton = document.getElementById("confirmBtnId");
+  if (!enterButton) return
+  if (event.key == "Enter") {
+    enterButton.click()
+  }
+})
+
+document.addEventListener("keydown", (event) => {
+  const escapeButton = document.getElementById("cancelBtnId");
+  if (!escapeButton) return
+  if (event.key == "Escape") {
+    escapeButton.click()
+  }
+})
