@@ -1,5 +1,5 @@
 import { changeCount } from "./changeCount";
-import { generateModalTask, generateTodo } from "./functionsForDom";
+import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
 
 let arrayOfTodos = [];
@@ -115,5 +115,13 @@ document.addEventListener("keydown", (event) => {
     escapeButton.click();
   }
 });
+
+modalCancelBtn.addEventListener("click", (event) => {
+  const main = document.querySelector(".main");
+
+  main.removeChild(modalContainer);
+});
+
+modalConfirmBtn.addEventListener("click", (event) => {});
 
 export { arrayOfTodos };
