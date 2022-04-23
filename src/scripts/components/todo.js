@@ -1,9 +1,9 @@
-import { createElement } from "../templates/templates";
-import { generateTodo } from "../index";
 import { changeCount } from "./changeCount";
+import { generateModalTask } from "./functionsForDom";
+import { generateTodo } from "./functionsForDom";
+import { dateToLocaleString } from "../templates/tools";
 
 let arrayOfTodos = [];
-const addBtn = document.querySelector("#add-button");
 const TodoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime,isProgress){
   this.todoId = todoId;
   this.todoTitle = todoTitle;
@@ -11,35 +11,6 @@ const TodoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime,i
   this.todoUser = todoUser;
   this.todoTime = todoTime;
   this.isProgress = isProgress;
-};
-
-const generateModalTask = () => {
-  const modalWindow = createElement("div", "modal__window");
-  const titleModal = createElement("textarea", "modal__title");
-  const modalDescription = createElement("textarea", "modal__description");
-  const modalOptions = createElement("div", "modal__options");
-  const selectModal = createElement("select", "modal__list", "Select User");
-  const cancelBtn = createElement("button", "modal__cancel", "Сancel");
-  const confirmBtn = createElement("button", "modal__confirm", "Confirm");
-
-  titleModal.placeholder = "Title";
-  modalDescription.placeholder = "Description";
-  modalWindow.dataset.type = "windowModal";
-  titleModal.dataset.type = "modalTitle";
-  modalDescription.dataset.type = "descriptionModal";
-  selectModal.dataset.type = "modalSelect";
-  cancelBtn.dataset.type = "btnCancel";
-  confirmBtn.dataset.type = "btnConfirm";
-  confirmBtn.id = "confirmBtnId"
-  cancelBtn.id = "cancelBtnId"
-
-  const overlay = document.getElementById("overlay");
-  overlay.classList.add("is-show");
-
-  modalOptions.append(selectModal, cancelBtn, confirmBtn);
-  modalWindow.append(titleModal, modalDescription, modalOptions);
-    
-  return modalWindow;
 };
 
 main.addEventListener("click", (event) => {
@@ -67,7 +38,7 @@ main.addEventListener("click", (event) => {
       title.value,
       desk.value,
       todoUser.value,
-      new Date().toLocaleString("ru").slice(0, -3),
+      dateToLocaleString(),
       "start"
     );
 
@@ -76,7 +47,7 @@ main.addEventListener("click", (event) => {
       title.value,
       desk.value,
       todoUser.value,
-      new Date().toLocaleString("ru").slice(0, -3),
+      dateToLocaleString(),
       "start"));
     
     arrayOfTodos.push(todo);
@@ -113,21 +84,13 @@ main.addEventListener("click", (event) => {
   changeCount();
 });
 
-export { addBtn, arrayOfTodos };
-export { generateModalTask };
-
-// const search = document.getElementById("seacrh-button");
-// search.addEventListener("click", (event) => {
-//   event.preventDefault();
-// }); заглушка на серч
-
 document.addEventListener("keydown", (event) => {
   const enterButton = document.getElementById("confirmBtnId");
   if (!enterButton) return
   if (event.key == "Enter") {
     enterButton.click()
   }
-})
+});
 
 document.addEventListener("keydown", (event) => {
   const escapeButton = document.getElementById("cancelBtnId");
@@ -135,4 +98,6 @@ document.addEventListener("keydown", (event) => {
   if (event.key == "Escape") {
     escapeButton.click()
   }
-})
+});
+
+export { arrayOfTodos }
