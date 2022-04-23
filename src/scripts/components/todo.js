@@ -4,7 +4,14 @@ import { generateTodo } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
 
 let arrayOfTodos = [];
-const TodoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime,isProgress){
+const TodoCreation = function (
+  todoId,
+  todoTitle,
+  todoDesk,
+  todoUser,
+  todoTime,
+  isProgress
+) {
   this.todoId = todoId;
   this.todoTitle = todoTitle;
   this.todoDesk = todoDesk;
@@ -19,9 +26,9 @@ main.addEventListener("click", (event) => {
   if (target === event.curentTarget) return;
 
   if (dataset.type === "btnCancel") {
-    target.parentNode.parentNode.remove(); 
+    target.parentNode.parentNode.remove();
     overlay.classList.remove("is-show");
-  };
+  }
 
   if (dataset.type === "btnConfirm") {
     const title = target.parentNode.previousSibling.previousSibling;
@@ -42,62 +49,72 @@ main.addEventListener("click", (event) => {
       "start"
     );
 
-    todoBox.append(generateTodo(
-      todoId,
-      title.value,
-      desk.value,
-      todoUser.value,
-      dateToLocaleString(),
-      "start"));
-    
+    todoBox.append(
+      generateTodo(
+        todoId,
+        title.value,
+        desk.value,
+        todoUser.value,
+        dateToLocaleString(),
+        "start"
+      )
+    );
+
     arrayOfTodos.push(todo);
     title.value = "";
     desk.value = "";
 
     changeCount();
-  };
+  }
 
-  if (dataset.type === 'todoDeleteBtn') {
-    let selectedTodoDelete = arrayOfTodos.findIndex((todo) => +todo.todoId === +target.closest(".task").dataset.id);
+  if (dataset.type === "todoDeleteBtn") {
+    let selectedTodoDelete = arrayOfTodos.findIndex(
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id
+    );
     target.closest(".task").remove();
     arrayOfTodos.splice(selectedTodoDelete, 1);
 
     changeCount();
-  };
+  }
 
-  if (dataset.type === 'todoConversionBtn') {
-    const selectedTodo = arrayOfTodos.findIndex((todo) => +todo.todoId === +target.closest(".task").dataset.id);
-    const inprogress = document.querySelector('#inprogress-tasks');
+  if (dataset.type === "todoConversionBtn") {
+    const selectedTodo = arrayOfTodos.findIndex(
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id
+    );
+    const inprogress = document.querySelector("#inprogress-tasks");
 
     arrayOfTodos[selectedTodo].isProgress = "inProgress";
     target.closest(".task").remove();
     const targetTodo = arrayOfTodos[selectedTodo];
-    inprogress.append(generateTodo(
-      targetTodo.todoId,
-      targetTodo.todoTitle,
-      targetTodo.todoDesk,
-      targetTodo.todoUser,
-      targetTodo.todoTime,
-      targetTodo.isProgress)) ;
-  };
+    inprogress.append(
+      generateTodo(
+        targetTodo.todoId,
+        targetTodo.todoTitle,
+        targetTodo.todoDesk,
+        targetTodo.todoUser,
+        targetTodo.todoTime,
+        targetTodo.isProgress
+      )
+    );
+  }
 
   changeCount();
 });
 
 document.addEventListener("keydown", (event) => {
   const enterButton = document.getElementById("confirmBtnId");
-  if (!enterButton) return
+  if (!enterButton) return;
   if (event.key == "Enter") {
-    enterButton.click()
+    enterButton.click();
   }
 });
 
 document.addEventListener("keydown", (event) => {
   const escapeButton = document.getElementById("cancelBtnId");
-  if (!escapeButton) return
+  if (!escapeButton) return;
   if (event.key == "Escape") {
-    escapeButton.click()
+    escapeButton.click();
   }
 });
 
-export { arrayOfTodos }
+export { arrayOfTodos };
