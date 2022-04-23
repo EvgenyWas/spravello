@@ -2,10 +2,10 @@ import { createElement } from "../templates/templates";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { arrayOfTodos } from "./todo";
 
-const generateModalTask = () => {
+const generateModalTask = (title = "", desc = "") => {
   const modalWindow = createElement("div", "modal__window");
-  const titleModal = createElement("textarea", "modal__title");
-  const modalDescription = createElement("textarea", "modal__description");
+  const titleModal = createElement("textarea", "modal__title", title);
+  const modalDescription = createElement("textarea", "modal__description", desc);
   const modalOptions = createElement("div", "modal__options");
   const selectModal = createElement("select", "modal__list", "Select User");
   const cancelBtn = createElement("button", "modal__cancel", "Сancel");
@@ -84,16 +84,8 @@ function generateWarning() {
     const modalContainer = createElement("div", "modal-warning__container");
     const modalTitle = createElement("h3", "modal-warning__title", "Warning!");
     const modalButtons = createElement("div", "modal-warning__buttons");
-    const modalCancelBtn = createElement(
-      "button",
-      "modal-warning__cancel__btn",
-      "Cancel"
-    );
-    const modalConfirmBtn = createElement(
-      "button",
-      "modal-warning__confirm-btn",
-      "Confirm"
-    );
+    const modalCancelBtn = createElement("button", "modal-warning__cancel__btn","Cancel");
+    const modalConfirmBtn = createElement("button", "modal-warning__confirm-btn", "Confirm");
   
     modalContainer.append(modalTitle, modalButtons);
     modalButtons.append(modalCancelBtn, modalConfirmBtn);

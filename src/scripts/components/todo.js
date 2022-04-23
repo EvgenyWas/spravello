@@ -116,12 +116,4 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-modalCancelBtn.addEventListener("click", (event) => {
-  const main = document.querySelector(".main");
-
-  main.removeChild(modalContainer);
-});
-
-modalConfirmBtn.addEventListener("click", (event) => {});
-
 export { arrayOfTodos };
