@@ -5,11 +5,6 @@ const LOCAL_STORAGE_API = {
   key: {
     tasks: "tasks-data",
   },
-  lists: {
-    todo: "start",
-    inprogress: "inProgress",
-    done: "done",
-  },
   getStorageData() {
     let data = JSON.parse(localStorage.getItem(this.key.tasks));
     return data ? data : [];
