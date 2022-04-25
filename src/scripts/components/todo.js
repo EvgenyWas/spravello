@@ -5,6 +5,7 @@ import {
   generateWarning,
 } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
+import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 
 let arrayOfTodos = [];
 
@@ -69,6 +70,7 @@ main.addEventListener("click", (event) => {
     desk.value = "";
 
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (dataset.type === "todoDeleteBtn") {
@@ -79,6 +81,7 @@ main.addEventListener("click", (event) => {
     arrayOfTodos.splice(selectedTodoDelete, 1);
 
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (
@@ -131,6 +134,7 @@ main.addEventListener("click", (event) => {
     if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
     changeCount();
   }
+<<<<<<< HEAD
   if (event.target.dataset.type === "ConfirmWarning") {
     const done = document.querySelector("#done-tasks");
     done.innerHTML = "";
@@ -143,6 +147,11 @@ main.addEventListener("click", (event) => {
     document.querySelector("#modalContainer").remove();
     overlay.classList.remove("is-show");
   }
+=======
+
+  changeCount();
+  LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
+>>>>>>> 55f5d7b0f4a507f60b31ae065b3ea07f1457ff49
 });
 
 document.addEventListener("keydown", (event) => {
