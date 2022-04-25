@@ -1,6 +1,7 @@
 import { changeCount } from "./changeCount";
 import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
+import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 
 let arrayOfTodos = [];
 const TodoCreation = function (
@@ -64,6 +65,7 @@ main.addEventListener("click", (event) => {
     desk.value = "";
 
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (dataset.type === "todoDeleteBtn") {
@@ -74,6 +76,7 @@ main.addEventListener("click", (event) => {
     arrayOfTodos.splice(selectedTodoDelete, 1);
 
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (dataset.type === "todoConversionBtn") {
@@ -98,6 +101,7 @@ main.addEventListener("click", (event) => {
   }
 
   changeCount();
+  LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
 });
 
 document.addEventListener("keydown", (event) => {
