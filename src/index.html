@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./scss/index.scss">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./scss/index.scss" />
     <title>Copy of trello</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="wrapper">
-        <header class="header">
-            <div class="header__box">
-                <h2 class="header__title">Trello</h2>
-                <form class="header__form">
-                    <select id="Filter">
-                        <option id="filter-value" value="1">Filter by Users</option>
-                        <option id="filter-value-users"value="2">Users</option>
-                    </select>
-                    <button type="button" class="header__form-btn" id="filter-button">
-                        <img src="./assets/filter.svg" alt="filter-btn">
-                    </button>
-                </form>
-                <div class="header__box-time">
-                    <time class="header__time" id="time">10:37</time>
-                </div>
+      <header class="header">
+        <div class="header__box">
+          <h2 class="header__title">Trello</h2>
+          <form class="header__form">
+            <select id="Filter">
+              <option id="filter-value" value="1">Filter by Users</option>
+              <option id="filter-value-users" value="2">Users</option>
+            </select>
+            <button type="button" class="header__form-btn" id="filter-button">
+              <img src="./assets/filter.svg" alt="filter-btn" />
+            </button>
+          </form>
+          <div class="header__box-time">
+            <time class="header__time" id="time">10:37</time>
+          </div>
+        </div>
+      </header>
+      <main class="main" id="main">
+        <!-- first article -->
+        <article class="todo">
+          <div class="todo__container">
+            <div class="todo__header">
+              <div class="todo__title">Todo:</div>
+              <span class="todo__counter" id="todo-counter">0</span>
             </div>
-        </header>
-        <main class="main" id="main">
-            <!-- first article -->
-            <article class="todo">
-                <div class="todo__container">
-                    <div class="todo__header">
-                        <div class="todo__title">Todo:</div>
-                        <span class="todo__counter" id="todo-counter">0</span>
-                    </div>
-                    <div class="todo__tasks" id="todo-tasks"></div>
-                    <div class="todo__button" id="add-button">Add todo</div>
-                </div>
-            </article>
-            <!-- second article -->
-            <article class="inprogress">
-                <div class="inprogress__container">
-                    <div class="inprogress__header">
-                        <div class="inprogress__title">In Progress:</div>
-                        <span class="inprogress__counter" id="inprogress-counter">0</span>
-                    </div>
-                    <div class="inprogress__tasks" id="inprogress-tasks"></div>
-                </div>
-            </article>
-            <!-- third article -->
-            <article class="done">
-                <div class="done__container">
-                    <div class="done__header">
-                        <div class="done__title">Done:</div>
-                        <span class="done__counter" id="done-counter">0</span>
-                    </div>
-                    <div class="done__tasks" id="done-tasks"></div>
-                    <div class="done__button" id="deleteall-button">Delete all</div>
-                </div>
-            </article>
-            <div class="overlay" id="overlay"></div>
-        </main>
+            <div class="todo__tasks" id="todo-tasks"></div>
+            <div class="todo__button" id="add-button">Add todo</div>
+          </div>
+        </article>
+        <!-- second article -->
+        <article class="inprogress">
+          <div class="inprogress__container">
+            <div class="inprogress__header">
+              <div class="inprogress__title">In Progress:</div>
+              <span class="inprogress__counter" id="inprogress-counter">0</span>
+            </div>
+            <div class="inprogress__tasks" id="inprogress-tasks"></div>
+          </div>
+        </article>
+        <!-- third article -->
+        <article class="done">
+          <div class="done__container" >
+            <div class="done__header">
+              <div class="done__title">Done:</div>
+              <span class="done__counter" id="done-counter">0</span>
+            </div>
+            <div class="done__tasks" id="done-tasks"></div>
+            <div class="done__button" id="deleteall-button">Delete all</div>
+          </div>
+        </article>
+        <div class="overlay" id="overlay"></div>
+      </main>
     </div>
     <script src="./scripts/index.js" type="module"></script>
-</body>
+  </body>
 </html>

@@ -5,7 +5,11 @@ import { arrayOfTodos } from "./todo";
 const generateModalTask = (title = "", desc = "") => {
   const modalWindow = createElement("div", "modal__window");
   const titleModal = createElement("textarea", "modal__title", title);
-  const modalDescription = createElement("textarea", "modal__description", desc);
+  const modalDescription = createElement(
+    "textarea",
+    "modal__description",
+    desc
+  );
   const modalOptions = createElement("div", "modal__options");
   const selectModal = createElement("select", "modal__list", "Select User");
   const cancelBtn = createElement("button", "modal__cancel", "Сancel");
@@ -48,9 +52,26 @@ function generateTodo(
   const todoEditBtn = createElement("button", "task__btn-edit", "Edit");
   const todoDeleteBtn = createElement("button", "task__btn-delete", "Delete");
   const todoElementTime = createElement("span", "task__time", todoTime);
-  const todoConversionBtn = createElement("button", "task__btn-conversion", "➣");
+  const todoConversionBtn = createElement(
+    "button",
+    "task__btn-conversion",
+    "➣"
+  );
+  const todoBackBtn = createElement("button", "task__btn-back", "Back");
+  const todoCompleteBtn = createElement(
+    "button",
+    "task__btn-complete",
+    "Complete"
+  );
 
-  todoContainerHeader.append(todoEditBtn, todoDeleteBtn, todoConversionBtn);
+  todoContainerHeader.append(
+    todoEditBtn,
+    todoDeleteBtn,
+    todoConversionBtn,
+
+    todoBackBtn,
+    todoCompleteBtn
+  );
 
   todoContainerFooter.append(todoElementUser, todoElementTime);
 
@@ -66,10 +87,11 @@ function generateTodo(
   todoEditBtn.dataset.type = "todoEditBtn";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
+  todoBackBtn.dataset.type = "todoBackBtn";
+  todoCompleteBtn.dataset.type = "todoCompleteBtn";
 
   todoContainer.className =
     isProgress === "inProgress" ? "task task--inprogress" : "task";
-
   return todoContainer;
 }
 
@@ -81,19 +103,32 @@ addBtn.addEventListener("click", () => {
 });
 
 function generateWarning() {
-    const modalContainer = createElement("div", "modal-warning__container");
-    const modalTitle = createElement("h3", "modal-warning__title", "Warning!");
-    const modalButtons = createElement("div", "modal-warning__buttons");
-    const modalCancelBtn = createElement("button", "modal-warning__cancel__btn","Cancel");
-    const modalConfirmBtn = createElement("button", "modal-warning__confirm-btn", "Confirm");
+  const modalContainer = createElement("div", "modal-warning__container");
+  const modalTitle = createElement("h3", "modal-warning__title", "Warning!");
+  const modalButtons = createElement("div", "modal-warning__buttons");
+  const modalCancelBtn = createElement(
+    "button",
+    "modal-warning__cancel__btn",
+    "Cancel"
+  );
+  const modalConfirmBtn = createElement(
+    "button",
+    "modal-warning__confirm-btn",
+    "Confirm"
+  );
+
+  modalContainer.append(modalTitle, modalButtons);
+  modalButtons.append(modalCancelBtn, modalConfirmBtn);
+
+  modalCancelBtn.dataset.type = "CancelWarning";
+  modalConfirmBtn.dataset.type = "ConfirmWarning";
+  modalConfirmBtn.id = "ConfirmWarningId";
+  modalCancelBtn.id = "CancelWarningId";
   
-    modalContainer.append(modalTitle, modalButtons);
-    modalButtons.append(modalCancelBtn, modalConfirmBtn);
-  
-    modalCancelBtn.dataset.type = "Cancel";
-    modalConfirmBtn.dataset.type = "Confirm";
-  
-    return modalContainer;
-  };
+  const overlay = document.getElementById("overlay");
+  overlay.classList.add("is-show");
+
+  return modalContainer;
+}
 
 export { generateTodo, generateModalTask, generateWarning };

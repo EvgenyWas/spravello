@@ -1,5 +1,9 @@
 import { changeCount } from "./changeCount";
-import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
+import {
+  generateModalTask,
+  generateTodo,
+  generateWarning,
+} from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
 
 let arrayOfTodos = [];
@@ -22,7 +26,7 @@ const TodoCreation = function (
 main.addEventListener("click", (event) => {
   const { target } = event;
   const { dataset } = target;
-  if (target === event.curentTarget) return;
+  if (target === event.currentTarget) return;
 
   if (dataset.type === "btnCancel") {
     target.parentNode.parentNode.remove();
@@ -76,32 +80,58 @@ main.addEventListener("click", (event) => {
     changeCount();
   }
 
-  if (dataset.type === "todoConversionBtn") {
+  if (dataset.type === "ConfirmWarning") {
+    const done = document.querySelector("#done-tasks");
+    done.innerHTML = "";
+    overlay.classList.remove("is-show");
+    target.parentNode.parentNode.remove();
+  }
+
+  if (dataset.type === "CancelWarning") {
+    target.parentNode.parentNode.remove();
+    overlay.classList.remove("is-show");
+  }
+
+  if (
+    dataset.type === "todoConversionBtn" ||
+    dataset.type === "todoBackBtn" ||
+    dataset.type === "todoCompleteBtn"
+  ) {
     const selectedTodo = arrayOfTodos.findIndex(
       (todo) => +todo.todoId === +target.closest(".task").dataset.id
     );
+    const todo = document.querySelector("#todo-tasks");
+    const done = document.querySelector("#done-tasks");
     const inprogress = document.querySelector("#inprogress-tasks");
-
-    arrayOfTodos[selectedTodo].isProgress = "inProgress";
     target.closest(".task").remove();
     const targetTodo = arrayOfTodos[selectedTodo];
-    inprogress.append(
-      generateTodo(
-        targetTodo.todoId,
-        targetTodo.todoTitle,
-        targetTodo.todoDesk,
-        targetTodo.todoUser,
-        targetTodo.todoTime,
-        targetTodo.isProgress
-      )
-    );
+    function swapTodo(unit, node) {
+      arrayOfTodos[selectedTodo].isProgress = unit;
+      node.append(
+        generateTodo(
+          targetTodo.todoId,
+          targetTodo.todoTitle,
+          targetTodo.todoDesk,
+          targetTodo.todoUser,
+          targetTodo.todoTime,
+          targetTodo.isProgress
+        )
+      );
+    }
+    if (dataset.type === "todoConversionBtn")
+      swapTodo("inProgress", inprogress);
+    if (dataset.type === "todoBackBtn") swapTodo("start", todo);
+    if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
+    changeCount();
   }
-
-  changeCount();
 });
 
 document.addEventListener("keydown", (event) => {
-  const enterButton = document.getElementById("confirmBtnId");
+  const enterButton = document.getElementById(
+    "confirmBtnId",
+    "ConfirmWarningId"
+  );
+
   if (!enterButton) return;
   if (event.key == "Enter") {
     enterButton.click();
@@ -109,7 +139,10 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  const escapeButton = document.getElementById("cancelBtnId");
+  const escapeButton = document.getElementById(
+    "cancelBtnId",
+    "ConfirmWarningId"
+  );
   if (!escapeButton) return;
   if (event.key == "Escape") {
     escapeButton.click();
@@ -117,3 +150,13 @@ document.addEventListener("keydown", (event) => {
 });
 
 export { arrayOfTodos };
+
+const deleteBtn = document.querySelector("#deleteall-button");
+deleteBtn.addEventListener("click", () => {
+  main.append(generateWarning());
+});
+
+// let unit = [];
+
+// for (let i = 0; i < unit.length; i++) {}
+// console.log(unit);
