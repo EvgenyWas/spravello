@@ -124,9 +124,10 @@ function generateWarning() {
   modalConfirmBtn.dataset.type = "ConfirmWarning";
   modalConfirmBtn.id = "ConfirmWarningId";
   modalCancelBtn.id = "CancelWarningId";
+  modalContainer.id = "modalContainer"
   
-  const overlay = document.getElementById("overlay");
-  overlay.classList.add("is-show");
+  // const overlay = document.getElementById("overlay");
+  // overlay.classList.add("is-show");
 
   return modalContainer;
 }

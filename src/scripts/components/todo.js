@@ -7,6 +7,7 @@ import {
 import { dateToLocaleString } from "../templates/tools";
 
 let arrayOfTodos = [];
+
 const TodoCreation = function (
   todoId,
   todoTitle,
@@ -80,18 +81,6 @@ main.addEventListener("click", (event) => {
     changeCount();
   }
 
-  if (dataset.type === "ConfirmWarning") {
-    const done = document.querySelector("#done-tasks");
-    done.innerHTML = "";
-    overlay.classList.remove("is-show");
-    target.parentNode.parentNode.remove();
-  }
-
-  if (dataset.type === "CancelWarning") {
-    target.parentNode.parentNode.remove();
-    overlay.classList.remove("is-show");
-  }
-
   if (
     dataset.type === "todoConversionBtn" ||
     dataset.type === "todoBackBtn" ||
@@ -118,20 +107,46 @@ main.addEventListener("click", (event) => {
         )
       );
     }
-    if (dataset.type === "todoConversionBtn")
-      swapTodo("inProgress", inprogress);
+    // error ???
+    if (dataset.type === "todoConversionBtn") {
+      const counter = arrayOfTodos.filter(
+        (e) => e.isProgress === "inProgress"
+      ).length;
+
+      if (counter < 2) {
+        swapTodo("inProgress", inprogress);
+      } else {
+        main.append(generateWarning());
+        if (dataset.type === "CancelWarning") {
+          target.parentNode.parentNode.remove();
+          return;
+        } else if (dataset.type === "ConfirmWarning") {
+          target.parentNode.parentNode.remove();
+          swapTodo("inProgress", inprogress);
+        }
+      }
+    }
+
     if (dataset.type === "todoBackBtn") swapTodo("start", todo);
     if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
     changeCount();
   }
+  if (event.target.dataset.type === "ConfirmWarning") {
+    const done = document.querySelector("#done-tasks");
+    done.innerHTML = "";
+    overlay.classList.remove("is-show");
+    document.querySelector("#modalContainer").remove();
+    arrayOfTodos = arrayOfTodos.filter((todo) => todo.isProgress !== "done");
+  }
+
+  if (event.target.dataset.type === "CancelWarning") {
+    document.querySelector("#modalContainer").remove();
+    overlay.classList.remove("is-show");
+  }
 });
 
 document.addEventListener("keydown", (event) => {
-  const enterButton = document.getElementById(
-    "confirmBtnId",
-    "ConfirmWarningId"
-  );
-
+  const enterButton = document.getElementById("confirmBtnId");
   if (!enterButton) return;
   if (event.key == "Enter") {
     enterButton.click();
@@ -139,24 +154,43 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  const escapeButton = document.getElementById(
-    "cancelBtnId",
-    "ConfirmWarningId"
-  );
+  const enterBtn = document.getElementById("ConfirmWarningId");
+  if (!enterBtn) return;
+  if (event.key == "Enter") {
+    enterBtn.click();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  const escapeButton = document.getElementById("cancelBtnId");
   if (!escapeButton) return;
   if (event.key == "Escape") {
     escapeButton.click();
+  }
+});
+document.addEventListener("keydown", (event) => {
+  const escapeBtn = document.getElementById("CancelWarningId");
+  if (!escapeBtn) return;
+  if (event.key == "Escape") {
+    escapeBtn.click();
   }
 });
 
 export { arrayOfTodos };
 
 const deleteBtn = document.querySelector("#deleteall-button");
-deleteBtn.addEventListener("click", () => {
+deleteBtn.addEventListener("click", (event) => {
   main.append(generateWarning());
+  if (event.target.dataset.type === "ConfirmWarning") {
+    const done = document.querySelector("#done-tasks");
+    done.innerHTML = "";
+    overlay.classList.remove("is-show");
+    document.querySelector("#modalContainer").remove();
+    arrayOfTodos = arrayOfTodos.filter((todo) => todo.isProgress !== "done");
+  }
+
+  if (event.target.dataset.type === "CancelWarning") {
+    document.querySelector("#modalContainer").remove();
+    overlay.classList.remove("is-show");
+  }
 });
-
-// let unit = [];
-
-// for (let i = 0; i < unit.length; i++) {}
-// console.log(unit);
