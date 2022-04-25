@@ -5,6 +5,7 @@ import {
   generateWarning,
 } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
+import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 
 let arrayOfTodos = [];
 const TodoCreation = function (
@@ -68,6 +69,7 @@ main.addEventListener("click", (event) => {
     desk.value = "";
 
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (dataset.type === "todoDeleteBtn") {
@@ -78,6 +80,7 @@ main.addEventListener("click", (event) => {
     arrayOfTodos.splice(selectedTodoDelete, 1);
 
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (dataset.type === "ConfirmWarning") {
@@ -124,6 +127,9 @@ main.addEventListener("click", (event) => {
     if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
     changeCount();
   }
+
+  changeCount();
+  LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
 });
 
 document.addEventListener("keydown", (event) => {
@@ -155,8 +161,3 @@ const deleteBtn = document.querySelector("#deleteall-button");
 deleteBtn.addEventListener("click", () => {
   main.append(generateWarning());
 });
-
-// let unit = [];
-
-// for (let i = 0; i < unit.length; i++) {}
-// console.log(unit);
