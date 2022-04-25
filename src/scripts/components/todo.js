@@ -1,6 +1,8 @@
 import { changeCount } from "./changeCount";
 import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
+import { getUsersFromApi } from "../services/getUsersFromApi"
+
 
 let arrayOfTodos = [];
 const TodoCreation = function (
@@ -19,6 +21,9 @@ const TodoCreation = function (
   this.isProgress = isProgress;
 };
 
+let editCounter = 0;
+let selectedTodo;
+
 main.addEventListener("click", (event) => {
   const { target } = event;
   const { dataset } = target;
@@ -27,6 +32,7 @@ main.addEventListener("click", (event) => {
   if (dataset.type === "btnCancel") {
     target.parentNode.parentNode.remove();
     overlay.classList.remove("is-show");
+    editCounter = 0;
   }
 
   if (dataset.type === "btnConfirm") {
@@ -36,7 +42,31 @@ main.addEventListener("click", (event) => {
     const todoId = Date.now();
     const todoBox = document.getElementById("todo-tasks");
     if (title.value === "" || desk.value === "") return;
+
     overlay.classList.remove("is-show");
+
+    if (editCounter) {
+      editCounter = 0;
+      const titleId = document.getElementById("titleModalId");
+      const descId = document.getElementById("modalDescriptionId");
+      const selectId = document.getElementById("selectModalId");
+
+      arrayOfTodos[selectedTodo].todoTitle = titleId.value;
+      arrayOfTodos[selectedTodo].todoDesk = descId.value;
+      arrayOfTodos[selectedTodo].todoUser = selectId.value;
+
+      const taskTitle = event.target.parentNode.nextSibling;
+      const taskDesk = event.target.parentNode.nextSibling.nextSibling;
+      const taskUser = event.target.parentNode.nextSibling.nextSibling.nextSibling.firstElementChild;
+
+      taskTitle.innerHTML = titleId.value;
+      taskDesk.innerHTML = descId.value;
+      taskUser.innerHTML = selectId.value;
+
+      target.parentNode.parentNode.remove();
+      
+      return
+    }
     target.parentNode.parentNode.remove();
 
     const todo = new TodoCreation(
@@ -95,6 +125,17 @@ main.addEventListener("click", (event) => {
         targetTodo.isProgress
       )
     );
+  }
+
+  if (dataset.type === "todoEditBtn") {
+    editCounter = 1;
+    selectedTodo = arrayOfTodos.findIndex(
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id
+    );
+    main.append(generateModalTask(arrayOfTodos[selectedTodo].todoTitle, arrayOfTodos[selectedTodo].todoDesk)) 
+    getUsersFromApi();
+
+    // "[data-type = 'todoEditBtn']"
   }
 
   changeCount();

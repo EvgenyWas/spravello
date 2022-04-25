@@ -21,6 +21,11 @@ const generateModalTask = (title = "", desc = "") => {
   confirmBtn.dataset.type = "btnConfirm";
   confirmBtn.id = "confirmBtnId";
   cancelBtn.id = "cancelBtnId";
+  titleModal.id = "titleModalId";
+  modalDescription.id = "modalDescriptionId";
+  selectModal.id = "selectModalId";
+
+
 
   const overlay = document.getElementById("overlay");
   overlay.classList.add("is-show");
@@ -66,6 +71,8 @@ function generateTodo(
   todoEditBtn.dataset.type = "todoEditBtn";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
+  todoEditBtn.id = "todoEditBtnId";
+  todoContainer.id = "editTodoTask";
 
   todoContainer.className =
     isProgress === "inProgress" ? "task task--inprogress" : "task";
