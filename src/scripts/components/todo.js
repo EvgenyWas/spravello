@@ -5,6 +5,8 @@ import { getUsersFromApi } from "../services/getUsersFromApi"
 
 
 let arrayOfTodos = [];
+let editCounter = 0;
+let selectedTodo;
 const TodoCreation = function (
   todoId,
   todoTitle,
@@ -20,9 +22,6 @@ const TodoCreation = function (
   this.todoTime = todoTime;
   this.isProgress = isProgress;
 };
-
-let editCounter = 0;
-let selectedTodo;
 
 main.addEventListener("click", (event) => {
   const { target } = event;
@@ -47,26 +46,24 @@ main.addEventListener("click", (event) => {
 
     if (editCounter) {
       editCounter = 0;
-      const titleId = document.getElementById("titleModalId");
-      const descId = document.getElementById("modalDescriptionId");
-      const selectId = document.getElementById("selectModalId");
+      const titleId = document.querySelector("[data-type = 'modalTitle']");
+      const descId = document.querySelector("[data-type = 'descriptionModal']");
+      const selectId = document.querySelector("[data-type = 'modalSelect']");
+      const taskTitle = document.getElementById("todoTitle");
+      const taskDesk = document.getElementById("todoDesc");
+      const taskUser = document.getElementById("todoUser");
 
       arrayOfTodos[selectedTodo].todoTitle = titleId.value;
       arrayOfTodos[selectedTodo].todoDesk = descId.value;
       arrayOfTodos[selectedTodo].todoUser = selectId.value;
-
-      const taskTitle = event.target.parentNode.nextSibling;
-      const taskDesk = event.target.parentNode.nextSibling.nextSibling;
-      const taskUser = event.target.parentNode.nextSibling.nextSibling.nextSibling.firstElementChild;
-
-      taskTitle.innerHTML = titleId.value;
-      taskDesk.innerHTML = descId.value;
-      taskUser.innerHTML = selectId.value;
+      taskTitle.innerText = titleId.value;
+      taskDesk.innerText = descId.value;
+      taskUser.innerText = selectId.value;
 
       target.parentNode.parentNode.remove();
-      
-      return
-    }
+      return;
+    };
+
     target.parentNode.parentNode.remove();
 
     const todo = new TodoCreation(
@@ -134,9 +131,7 @@ main.addEventListener("click", (event) => {
     );
     main.append(generateModalTask(arrayOfTodos[selectedTodo].todoTitle, arrayOfTodos[selectedTodo].todoDesk)) 
     getUsersFromApi();
-
-    // "[data-type = 'todoEditBtn']"
-  }
+  };
 
   changeCount();
 });
@@ -155,6 +150,13 @@ document.addEventListener("keydown", (event) => {
   if (event.key == "Escape") {
     escapeButton.click();
   }
+});
+
+const addBtn = document.querySelector("#add-button");
+
+addBtn.addEventListener("click", () => {
+  main.append(generateModalTask());
+  getUsersFromApi();
 });
 
 export { arrayOfTodos };
