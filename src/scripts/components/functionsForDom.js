@@ -45,29 +45,18 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   const todoEditBtn = createElement("button", "task__btn-edit", "Edit");
   const todoDeleteBtn = createElement("button", "task__btn-delete", "Delete");
   const todoElementTime = createElement("span", "task__time", todoTime);
-  const todoConversionBtn = createElement(
-    "button",
-    "task__btn-conversion",
-    "➣"
-  );
+  const todoConversionBtn = createElement("button","task__btn-conversion","➣");
   const todoBackBtn = createElement("button", "task__btn-back", "Back");
-  const todoCompleteBtn = createElement(
-    "button",
-    "task__btn-complete",
-    "Complete"
-  );
+  const todoCompleteBtn = createElement("button","task__btn-complete","Complete");
 
   todoContainerHeader.append(
     todoEditBtn,
     todoDeleteBtn,
     todoConversionBtn,
-
     todoBackBtn,
     todoCompleteBtn
   );
-
   todoContainerFooter.append(todoElementUser, todoElementTime);
-
   todoContainer.append(
     todoContainerHeader,
     todoElementTitle,
@@ -80,6 +69,8 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoEditBtn.dataset.type = "todoEditBtn";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
+  todoBackBtn.dataset.type = "todoBackBtn";
+  todoCompleteBtn.dataset.type = "todoCompleteBtn"
   todoEditBtn.id = "todoEditBtnId";
   todoContainer.id = "editTodoTask";
   todoElementTitle.id = "todoTitle"
