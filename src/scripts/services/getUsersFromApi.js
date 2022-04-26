@@ -1,18 +1,17 @@
-function getUsersFromApi() {
+function getUsersFromApi(node) {
   return new Promise((response) => {
     fetch("https://jsonplaceholder.typicode.com/users")
       .then((response) => response.json())
       .then((users) => response(users));
-  }).then((users) => pushUsersToSelect(users));
+  }).then((users) => pushUsersToSelect(users, node));
 }
 
-function pushUsersToSelect(users) {
+function pushUsersToSelect(users, node) {
   users.forEach((user) => {
-    const userOpt = document.querySelector(".modal__list");
     const option = document.createElement("option");
-    option.className = "modal__item";
+    option.className = "user";
     option.innerText = user.username;
-    userOpt.append(option);
+    node.append(option);
   });
 }
 
