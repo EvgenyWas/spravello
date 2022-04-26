@@ -76,6 +76,7 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoElementTitle.id = "todoTitle"
   todoElementDescription.id = "todoDesc"
   todoElementUser.id = "todoUser"
+  todoContainer.draggable = true;
 
   todoContainer.className =
     isProgress === "inProgress" ? "task task--inprogress" : "task";
