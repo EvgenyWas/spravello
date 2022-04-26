@@ -35,14 +35,7 @@ const generateModalTask = (title = "", desc = "") => {
   return modalWindow;
 };
 
-function generateTodo(
-  todoId,
-  todoTitle,
-  todoDesk,
-  todoUser,
-  todoTime,
-  isProgress
-) {
+function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
   const todoContainer = createElement("div", "task");
   const todoContainerHeader = createElement("div", "task__header");
   const todoContainerFooter = createElement("div", "task__footer");
@@ -87,21 +80,16 @@ function generateTodo(
   todoEditBtn.dataset.type = "todoEditBtn";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
-  todoBackBtn.dataset.type = "todoBackBtn";
-  todoCompleteBtn.dataset.type = "todoCompleteBtn";
+  todoEditBtn.id = "todoEditBtnId";
+  todoContainer.id = "editTodoTask";
+  todoElementTitle.id = "todoTitle"
+  todoElementDescription.id = "todoDesc"
+  todoElementUser.id = "todoUser"
 
   todoContainer.className =
     isProgress === "inProgress" ? "task task--inprogress" : "task";
   return todoContainer;
 }
-
-const addBtn = document.querySelector("#add-button");
-
-addBtn.addEventListener("click", () => {
-  main.append(generateModalTask());
-  const userOpt = document.querySelector(".modal__list");
-  getUsersFromApi(userOpt);
-});
 
 function generateWarning() {
   const modalContainer = createElement("div", "modal-warning__container");
