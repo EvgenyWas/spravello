@@ -99,7 +99,8 @@ const addBtn = document.querySelector("#add-button");
 
 addBtn.addEventListener("click", () => {
   main.append(generateModalTask());
-  getUsersFromApi();
+  const userOpt = document.querySelector(".modal__list");
+  getUsersFromApi(userOpt);
 });
 
 function generateWarning() {

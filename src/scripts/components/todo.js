@@ -98,7 +98,7 @@ main.addEventListener("click", (event) => {
     target.closest(".task").remove();
     const targetTodo = arrayOfTodos[selectedTodo];
     function swapTodo(unit, node) {
-      arrayOfTodos[selectedTodo].isProgress = unit;
+      targetTodo.isProgress = unit;
       node.append(
         generateTodo(
           targetTodo.todoId,
@@ -134,24 +134,21 @@ main.addEventListener("click", (event) => {
     if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
     changeCount();
   }
-<<<<<<< HEAD
-  if (event.target.dataset.type === "ConfirmWarning") {
-    const done = document.querySelector("#done-tasks");
-    done.innerHTML = "";
-    overlay.classList.remove("is-show");
-    document.querySelector("#modalContainer").remove();
-    arrayOfTodos = arrayOfTodos.filter((todo) => todo.isProgress !== "done");
-  }
+  // if (event.target.dataset.type === "ConfirmWarning") {
+  //   const done = document.querySelector("#done-tasks");
+  //   done.innerHTML = "";
+  //   overlay.classList.remove("is-show");
+  //   document.querySelector("#modalContainer").remove();
+  //   arrayOfTodos = arrayOfTodos.filter((todo) => todo.isProgress !== "done");
+  // }
 
   if (event.target.dataset.type === "CancelWarning") {
     document.querySelector("#modalContainer").remove();
     overlay.classList.remove("is-show");
   }
-=======
 
   changeCount();
   LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
->>>>>>> 55f5d7b0f4a507f60b31ae065b3ea07f1457ff49
 });
 
 document.addEventListener("keydown", (event) => {
@@ -185,21 +182,38 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-export { arrayOfTodos };
-
 const deleteBtn = document.querySelector("#deleteall-button");
 deleteBtn.addEventListener("click", (event) => {
   main.append(generateWarning());
-  if (event.target.dataset.type === "ConfirmWarning") {
-    const done = document.querySelector("#done-tasks");
-    done.innerHTML = "";
-    overlay.classList.remove("is-show");
-    document.querySelector("#modalContainer").remove();
-    arrayOfTodos = arrayOfTodos.filter((todo) => todo.isProgress !== "done");
-  }
-
-  if (event.target.dataset.type === "CancelWarning") {
-    document.querySelector("#modalContainer").remove();
-    overlay.classList.remove("is-show");
-  }
 });
+
+// Filter in header
+const filterButton = document.getElementById("filter-button");
+
+filterButton.addEventListener("click", (event) => {
+  const select = document.getElementById("filter");
+  const listTodo = document.getElementById("todo-tasks");
+  const listInProgress = document.getElementById("inprogress-tasks");
+  const listDone = document.getElementById("done-tasks");
+
+  let filteredArrayTodo = arrayOfTodos.filter(
+    (todo) => todo.todoUser === select.value && todo.isProgress === "start");
+  let filteredArrayInProgress = arrayOfTodos.filter(
+    (todo) => todo.todoUser === select.value && todo.isProgress === "inProgress");
+  let filteredArrayDone = arrayOfTodos.filter(
+    (todo) => todo.todoUser === select.value && todo.isProgress === "done");
+
+  listTodo.innerHTML = "";
+  listInProgress.innerHTML = "";
+  listDone.innerHTML = "";
+
+  function addTodo(list, node) {
+    list.forEach(todo => node.append(generateTodo(todo.todoId, todo.todoTitle, todo.todoDesk, todo.todoUser, todo.todoTime, todo.isProgress)));
+  };
+
+  addTodo(filteredArrayTodo, listTodo);
+  addTodo(filteredArrayInProgress, listInProgress);
+  addTodo(filteredArrayDone, listDone);
+});
+
+export { arrayOfTodos };
