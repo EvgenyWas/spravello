@@ -229,6 +229,7 @@ document.addEventListener("keydown", (event) => {
 const deleteBtn = document.querySelector("#deleteall-button");
 deleteBtn.addEventListener("click", (event) => {
   main.append(generateWarning());
+  overlay.classList.add("is-show");
 });
 
 // Filter in header

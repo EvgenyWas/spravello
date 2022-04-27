@@ -76,9 +76,27 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoElementTitle.id = "todoTitle"
   todoElementDescription.id = "todoDesc"
   todoElementUser.id = "todoUser"
+  
+    if (isProgress === "start") {
+      todoCompleteBtn.hidden = "true";
+      todoBackBtn.hidden = "true";
+    } else if (isProgress === "inProgress") {
+      todoContainer.className = "task task--inprogress";
+      todoEditBtn.hidden = "true";
+      todoConversionBtn.hidden = "true";
+      todoDeleteBtn.hidden = "delete"; 
+    } else if (isProgress === "done"){
+      todoContainer.className = "task task--done";
+      todoContainerHeader.className = "task__header task__header--done"
+      todoDeleteBtn.className ="task__btn-delete task__btn-delete--header";
+      todoEditBtn.hidden = "true";
+      todoConversionBtn.hidden = "true";
+      todoCompleteBtn.hidden = "true";
+      todoBackBtn.hidden = "true";
+      todoContainerHeader.append(todoElementTitle);  
+    }
 
-  todoContainer.className =
-    isProgress === "inProgress" ? "task task--inprogress" : "task";
+
   return todoContainer;
 }
 
@@ -108,6 +126,7 @@ function generateWarning() {
   
   // const overlay = document.getElementById("overlay");
   // overlay.classList.add("is-show");
+  
 
   return modalContainer;
 }

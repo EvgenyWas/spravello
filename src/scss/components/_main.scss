@@ -1,10 +1,18 @@
 // main
 .main{
     display: flex;
-    justify-content: center;
-    max-height: 80vh;
+    max-height: 90vh;
+    width: 80vw;
+    margin: 0 auto;
 }
 
+.main__container{
+    display: flex;
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: auto;
+    margin: 0 auto; 
+}
 
 /* Todo article*/
 .todo{
@@ -16,8 +24,6 @@
     // background-color: $todo-color;
     background-color: $third-color;
     border-radius: 5px;
-    overflow-x: auto;
-    overflow-y: hidden;
 }
 
 .todo__container{
@@ -97,8 +103,8 @@
     // background-color: $inprogress-color;
     background-color: $third-color;
     border-radius: 5px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    // overflow-x: auto;
+    // overflow-y: hidden;
 }
 
 
@@ -153,17 +159,15 @@
     width: 300px;
     height: 100%;
     max-height: 80vh;
-    // background-color: $done-color;
     background-color: $third-color;
     border-radius: 5px;
-    overflow-x: auto;
-    overflow-y: hidden;
+    // overflow-y: hidden;
 }
 
 .done__container{
     display: flex;
     flex-direction: column;
-    max-height: 100%
+    max-height: 100%;
 }
 
 .done__header{
@@ -240,12 +244,29 @@
     display: block;
 }
 
-// @include xl{
-//     .main{
-//         display: flex;
-//         overflow-y: auto;
-//         overflow-x: scroll;
-//         background-color: #881a1b;
-//     }
-// }
 
+@include xl {
+    .main{
+        max-height: 80vh;
+    }    
+    .todo{
+        margin: 20px 20px 0 0;
+    }
+
+    .inprogress{
+        margin: 20px 20px 0 0;
+    }
+
+    .done{
+        margin: 20px 20px 0 0;
+    }
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}

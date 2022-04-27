@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./scss/index.scss" />
-    <title>Copy of trello</title>
+    <title>Spravello</title>
   </head>
   <body>
     <div class="wrapper">
       <header class="header">
         <div class="header__box">
-          <h2 class="header__title">Trello</h2>
+          <h2 class="header__title">Spravello</h2>
           <form class="header__form">
-            <select id="filter"></select>
+            <select class="header__filter" id="filter"></select>
             <button type="button" class="header__form-btn" id="filter-button">
               <img src="./assets/filter.svg" alt="filter-btn" />
             </button>
@@ -24,6 +24,7 @@
         </div>
       </header>
       <main class="main" id="main">
+        <div class="main__container">
         <!-- first article -->
         <article class="todo">
           <div class="todo__container">
@@ -57,6 +58,7 @@
           </div>
         </article>
         <div class="overlay" id="overlay"></div>
+      </div>
       </main>
     </div>
     <script src="./scripts/index.js" type="module"></script>

@@ -3,7 +3,7 @@
     width: 270px;
     padding: 5px;
     margin: 10px auto;
-    border: 2px solid rgb(162, 22, 22);
+    // border: 2px solid rgb(162, 22, 22);
     border-radius: 5px;
     z-index: 0;
     background-color: $todo-color;
@@ -11,12 +11,22 @@
 
 .task--inprogress{
     background-color: $inprogress-color;
-    border: 2px solid rgb(226, 126, 11);
+    // border: 2px solid rgb(226, 126, 11);
+}
+
+.task--done{
+    background-color: $done-color;
+    // border: 2px solid rgb(64, 205, 39);
 }
 
 .task__header{
     display: flex;
     padding: 2px;
+}
+
+.task__header--done{
+    flex-direction: row-reverse;
+    justify-content: space-between;
 }
 
 .task__title{
@@ -59,9 +69,10 @@
     }
 }
 
-// .task__time{
-//     background-color: orange;
-// }
+.task__btn-delete--header{
+    margin-right: 0px;
+    margin-left: 80px;
+}
 
 .task__btn-conversion{
     @include btn;
@@ -78,4 +89,31 @@
 .task__footer{
     display: flex;
     padding: 3px;
+}
+
+.task__btn-back{
+    @include btn;
+
+    &:hover{
+        @include btn-hoover;
+    }
+
+    &:active{
+        @include btn-active;
+    }
+
+    margin-left: 110px;
+}
+
+.task__btn-complete{
+    @include btn;
+
+    &:hover{
+        @include btn-hoover;
+    }
+
+    &:active{
+        @include btn-active;
+    }
+    margin-left: 10px;
 }
