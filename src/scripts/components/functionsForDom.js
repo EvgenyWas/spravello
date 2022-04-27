@@ -35,7 +35,14 @@ const generateModalTask = (title = "", desc = "") => {
   return modalWindow;
 };
 
-function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
+function generateTodo(
+  todoId,
+  todoTitle,
+  todoDesk,
+  todoUser,
+  todoTime,
+  isProgress
+) {
   const todoContainer = createElement("div", "task");
   const todoContainerHeader = createElement("div", "task__header");
   const todoContainerFooter = createElement("div", "task__footer");
@@ -45,9 +52,17 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   const todoEditBtn = createElement("button", "task__btn-edit", "Edit");
   const todoDeleteBtn = createElement("button", "task__btn-delete", "Delete");
   const todoElementTime = createElement("span", "task__time", todoTime);
-  const todoConversionBtn = createElement("button","task__btn-conversion","➣");
+  const todoConversionBtn = createElement(
+    "button",
+    "task__btn-conversion",
+    "➣"
+  );
   const todoBackBtn = createElement("button", "task__btn-back", "Back");
-  const todoCompleteBtn = createElement("button","task__btn-complete","Complete");
+  const todoCompleteBtn = createElement(
+    "button",
+    "task__btn-complete",
+    "Complete"
+  );
 
   todoContainerHeader.append(
     todoEditBtn,
@@ -70,19 +85,19 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
   todoBackBtn.dataset.type = "todoBackBtn";
-  todoCompleteBtn.dataset.type = "todoCompleteBtn"
+  todoCompleteBtn.dataset.type = "todoCompleteBtn";
   todoEditBtn.id = "todoEditBtnId";
   todoContainer.id = "editTodoTask";
-  todoElementTitle.id = "todoTitle"
-  todoElementDescription.id = "todoDesc"
-  todoElementUser.id = "todoUser"
+  todoElementTitle.id = "todoTitle";
+  todoElementDescription.id = "todoDesc";
+  todoElementUser.id = "todoUser";
 
   todoContainer.className =
     isProgress === "inProgress" ? "task task--inprogress" : "task";
   return todoContainer;
 }
 
-function generateWarning() {
+function generateWarning({ onConfirm, onCancel }) {
   const modalContainer = createElement("div", "modal-warning__container");
   const modalTitle = createElement("h3", "modal-warning__title", "Warning!");
   const modalButtons = createElement("div", "modal-warning__buttons");
@@ -99,15 +114,26 @@ function generateWarning() {
 
   modalContainer.append(modalTitle, modalButtons);
   modalButtons.append(modalCancelBtn, modalConfirmBtn);
+  const overlay = document.getElementById("overlay");
 
-  modalCancelBtn.dataset.type = "CancelWarning";
-  modalConfirmBtn.dataset.type = "ConfirmWarning";
-  modalConfirmBtn.id = "ConfirmWarningId";
-  modalCancelBtn.id = "CancelWarningId";
-  modalContainer.id = "modalContainer"
-  
-  // const overlay = document.getElementById("overlay");
-  // overlay.classList.add("is-show");
+  modalCancelBtn.dataset.type = "cancelWarning";
+  modalConfirmBtn.dataset.type = "confirmWarning";
+  modalConfirmBtn.id = "confirmWarningId";
+  modalCancelBtn.id = "cancelWarningId";
+  modalContainer.id = "modalContainer";
+  modalCancelBtn.addEventListener("click", () => {
+    onCancel();
+    document.querySelector("#modalContainer").remove();
+    overlay.classList.remove("is-show");
+  });
+
+  modalConfirmBtn.addEventListener("click", () => {
+    onConfirm();
+    document.querySelector("#modalContainer").remove();
+
+    overlay.classList.remove("is-show");
+  });
+  overlay.classList.add("is-show");
 
   return modalContainer;
 }

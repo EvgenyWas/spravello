@@ -5,14 +5,11 @@ import {
   generateWarning,
 } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
-import { getUsersFromApi } from "../services/getUsersFromApi"
+import { getUsersFromApi } from "../services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "../services/localStorageApi";
-
 
 let arrayOfTodos = [];
 let editCounter = 0;
-let warningCounter = 0;
-const moveCounter = arrayOfTodos.filter((e) => e.isProgress === "inProgress").length;
 let selectedTodo;
 const TodoCreation = function (
   todoId,
@@ -47,9 +44,8 @@ main.addEventListener("click", (event) => {
     const todoUser = target.previousSibling.previousSibling;
     const todoId = Date.now();
     const todoBox = document.getElementById("todo-tasks");
-    if (title.value === "" || desk.value === "") return;
-
     overlay.classList.remove("is-show");
+    if (title.value === "" || desk.value === "") return;
 
     if (editCounter) {
       editCounter = 0;
@@ -66,11 +62,10 @@ main.addEventListener("click", (event) => {
       taskTitle.innerText = titleId.value;
       taskDesk.innerText = descId.value;
       taskUser.innerText = selectId.value;
-
       target.parentNode.parentNode.remove();
       LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
       return;
-    };
+    }
 
     target.parentNode.parentNode.remove();
 
@@ -108,7 +103,6 @@ main.addEventListener("click", (event) => {
     );
     target.closest(".task").remove();
     arrayOfTodos.splice(selectedTodoDelete, 1);
-
     changeCount();
     LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
@@ -124,7 +118,7 @@ main.addEventListener("click", (event) => {
     const todo = document.querySelector("#todo-tasks");
     const done = document.querySelector("#done-tasks");
     const inprogress = document.querySelector("#inprogress-tasks");
-    target.closest(".task").remove();
+    
     const targetTodo = arrayOfTodos[selectedTodo];
     function swapTodo(unit, node) {
       targetTodo.isProgress = unit;
@@ -138,61 +132,63 @@ main.addEventListener("click", (event) => {
           targetTodo.isProgress
         )
       );
+      target.closest(".task").remove();
     }
-    // error ???
-    // if (dataset.type === "todoConversionBtn") {
-    //   if (moveCounter < 2) {
-    //     swapTodo("inProgress", inprogress);
-    //   } else {
-    //     main.append(generateWarning());
-    //     // if (dataset.type === "CancelWarning") {
-    //     //   target.parentNode.parentNode.remove();
-    //     //   return;
-    //     // } else if (dataset.type === "ConfirmWarning") {
-    //     //   target.parentNode.parentNode.remove();
-    //     //   swapTodo("inProgress", inprogress);
-    //     // }
-    //   }};
-    if (dataset.type === "todoConversionBtn") swapTodo("inProgress", inprogress);
+
+    if (dataset.type === "todoConversionBtn") {
+      if (document.getElementById("inprogress-tasks").childElementCount < 6) {
+        swapTodo("inProgress", inprogress);
+      } else {
+        main.append(
+          generateWarning({
+            onConfirm: () => swapTodo("inProgress", inprogress),
+            onCancel: () => {return},
+          })
+        );
+      }
+    }
 
     if (dataset.type === "todoBackBtn") swapTodo("start", todo);
+
     if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
+
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
-  if (event.target.dataset.type === "ConfirmWarning") {
-    const done = document.querySelector("#done-tasks");
-    overlay.classList.remove("is-show");
-    document.querySelector("#modalContainer").remove();
-    
-    if (warningCounter) {
-      moveCounter = 0;
-      document.querySelector("[data-type = 'todoConversionBtn']").click();
-      document.querySelector("#modalContainer").remove();
-      return;
-    }
-
-    done.innerHTML = "";
-    arrayOfTodos = arrayOfTodos.filter((todo) => todo.isProgress !== "done");
-  }
-
-  if (dataset.type === "CancelWarning") {
-    document.querySelector("#modalContainer").remove();
-    overlay.classList.remove("is-show");
-    moveCounter = 0;
-  };
 
   if (dataset.type === "todoEditBtn") {
     editCounter = 1;
     selectedTodo = arrayOfTodos.findIndex(
       (todo) => +todo.todoId === +target.closest(".task").dataset.id
     );
-    main.append(generateModalTask(arrayOfTodos[selectedTodo].todoTitle, arrayOfTodos[selectedTodo].todoDesk)) 
+    main.append(
+      generateModalTask(
+        arrayOfTodos[selectedTodo].todoTitle,
+        arrayOfTodos[selectedTodo].todoDesk
+      )
+    );
     const userOpt = document.querySelector(".modal__list");
     getUsersFromApi(userOpt);
-  };
+  }
 
   changeCount();
   LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
+});
+
+const deleteBtn = document.querySelector("#deleteall-button");
+deleteBtn.addEventListener("click", (event) => {
+  main.append(
+    generateWarning({
+      onConfirm: () => {
+        const done = document.querySelector("#done-tasks");
+        done.innerHTML = "";
+        arrayOfTodos = arrayOfTodos.filter(
+          (todo) => todo.isProgress !== "done"
+        );
+      },
+      onCancel: () => {},
+    })
+  );
 });
 
 document.addEventListener("keydown", (event) => {
@@ -204,31 +200,27 @@ document.addEventListener("keydown", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
-  const enterBtn = document.getElementById("ConfirmWarningId");
-  if (!enterBtn) return;
-  if (event.key == "Enter") {
-    enterBtn.click();
-  }
-});
-
-document.addEventListener("keydown", (event) => {
   const escapeButton = document.getElementById("cancelBtnId");
   if (!escapeButton) return;
   if (event.key == "Escape") {
     escapeButton.click();
   }
 });
+
 document.addEventListener("keydown", (event) => {
-  const escapeBtn = document.getElementById("CancelWarningId");
+  const escapeBtn = document.getElementById("cancelWarningId");
   if (!escapeBtn) return;
   if (event.key == "Escape") {
     escapeBtn.click();
   }
 });
 
-const deleteBtn = document.querySelector("#deleteall-button");
-deleteBtn.addEventListener("click", (event) => {
-  main.append(generateWarning());
+document.addEventListener("keydown", (event) => {
+  const enterBtn = document.getElementById("confirmWarningId");
+  if (!enterBtn) return;
+  if (event.key == "Enter") {
+    enterBtn.click();
+  }
 });
 
 // Filter in header
@@ -256,15 +248,29 @@ filterButton.addEventListener("click", () => {
   };
 
   let filteredArrayTodo = arrayOfTodos.filter(
-    (todo) => todo.todoUser === select.value && todo.isProgress === "start");
+    (todo) => todo.todoUser === select.value && todo.isProgress === "start"
+  );
   let filteredArrayInProgress = arrayOfTodos.filter(
-    (todo) => todo.todoUser === select.value && todo.isProgress === "inProgress");
+    (todo) => todo.todoUser === select.value && todo.isProgress === "inProgress"
+  );
   let filteredArrayDone = arrayOfTodos.filter(
-    (todo) => todo.todoUser === select.value && todo.isProgress === "done");
+    (todo) => todo.todoUser === select.value && todo.isProgress === "done"
+  );
 
   function addTodo(list, node) {
-    list.forEach(todo => node.append(generateTodo(todo.todoId, todo.todoTitle, todo.todoDesk, todo.todoUser, todo.todoTime, todo.isProgress)));
-  };
+    list.forEach((todo) =>
+      node.append(
+        generateTodo(
+          todo.todoId,
+          todo.todoTitle,
+          todo.todoDesk,
+          todo.todoUser,
+          todo.todoTime,
+          todo.isProgress
+        )
+      )
+    );
+  }
 
   addTodo(filteredArrayTodo, listTodo);
   addTodo(filteredArrayInProgress, listInProgress);
@@ -272,7 +278,6 @@ filterButton.addEventListener("click", () => {
 });
 
 const addBtn = document.querySelector("#add-button");
-
 addBtn.addEventListener("click", () => {
   main.append(generateModalTask());
   const userOpt = document.querySelector(".modal__list");
