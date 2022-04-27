@@ -234,11 +234,26 @@ deleteBtn.addEventListener("click", (event) => {
 // Filter in header
 const filterButton = document.getElementById("filter-button");
 
-filterButton.addEventListener("click", (event) => {
+filterButton.addEventListener("click", () => {
   const select = document.getElementById("filter");
   const listTodo = document.getElementById("todo-tasks");
   const listInProgress = document.getElementById("inprogress-tasks");
   const listDone = document.getElementById("done-tasks");
+
+  listTodo.innerHTML = "";
+  listInProgress.innerHTML = "";
+  listDone.innerHTML = "";
+
+  if (select.value === 'All') {
+    let tasksInTodo = arrayOfTodos.filter(task => task.isProgress === 'start');
+    let tasksInInprogress = arrayOfTodos.filter(task => task.isProgress === 'inProgress');
+    let tasksInDone = arrayOfTodos.filter(task => task.isProgress === 'done');
+
+    addTodo(tasksInTodo, listTodo);
+    addTodo(tasksInInprogress, listInProgress);
+    addTodo(tasksInDone, listDone);
+    return;
+  };
 
   let filteredArrayTodo = arrayOfTodos.filter(
     (todo) => todo.todoUser === select.value && todo.isProgress === "start");
@@ -246,10 +261,6 @@ filterButton.addEventListener("click", (event) => {
     (todo) => todo.todoUser === select.value && todo.isProgress === "inProgress");
   let filteredArrayDone = arrayOfTodos.filter(
     (todo) => todo.todoUser === select.value && todo.isProgress === "done");
-
-  listTodo.innerHTML = "";
-  listInProgress.innerHTML = "";
-  listDone.innerHTML = "";
 
   function addTodo(list, node) {
     list.forEach(todo => node.append(generateTodo(todo.todoId, todo.todoTitle, todo.todoDesk, todo.todoUser, todo.todoTime, todo.isProgress)));
