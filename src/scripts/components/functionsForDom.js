@@ -134,35 +134,6 @@ function generateWarning({ onConfirm, onCancel }) {
     overlay.classList.remove("is-show");
   });
   overlay.classList.add("is-show");
-  document.addEventListener("keydown", (event) => {
-    const escapeButton = document.getElementById("cancelBtnId");
-    if (!escapeButton) return;
-    if (event.key == "Escape") {
-      escapeButton.click();
-    }
-  });
-  document.addEventListener("keydown", (event) => {
-    const escapeBtn = document.getElementById("cancelWarningId");
-    if (!escapeBtn) return;
-    if (event.key == "Escape") {
-      escapeBtn.click();
-    }
-  });
-  document.addEventListener("keydown", (event) => {
-    const enterButton = document.getElementById("confirmBtn");
-    if (!enterButton) return;
-    if (event.key == "Enter") {
-      enterButton.click();
-    }
-  });
-
-  document.addEventListener("keydown", (event) => {
-    const enterBtn = document.getElementById("confirmWarningId");
-    if (!enterBtn) return;
-    if (event.key == "Enter") {
-      enterBtn.click();
-    }
-  });
 
   return modalContainer;
 }

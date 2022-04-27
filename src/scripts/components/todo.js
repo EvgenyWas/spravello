@@ -10,7 +10,6 @@ import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 
 let arrayOfTodos = [];
 let editCounter = 0;
-
 let selectedTodo;
 const TodoCreation = function (
   todoId,
@@ -95,7 +94,6 @@ main.addEventListener("click", (event) => {
     desk.value = "";
 
     changeCount();
-
     LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
@@ -120,7 +118,7 @@ main.addEventListener("click", (event) => {
     const todo = document.querySelector("#todo-tasks");
     const done = document.querySelector("#done-tasks");
     const inprogress = document.querySelector("#inprogress-tasks");
-    target.closest(".task").remove();
+    
     const targetTodo = arrayOfTodos[selectedTodo];
     function swapTodo(unit, node) {
       targetTodo.isProgress = unit;
@@ -134,6 +132,7 @@ main.addEventListener("click", (event) => {
           targetTodo.isProgress
         )
       );
+      target.closest(".task").remove();
     }
 
     if (dataset.type === "todoConversionBtn") {
@@ -143,17 +142,18 @@ main.addEventListener("click", (event) => {
         main.append(
           generateWarning({
             onConfirm: () => swapTodo("inProgress", inprogress),
-            onCancel: () => {
-              swapTodo("start", todo);
-            },
+            onCancel: () => {return},
           })
         );
       }
     }
 
     if (dataset.type === "todoBackBtn") swapTodo("start", todo);
+
     if (dataset.type === "todoCompleteBtn") swapTodo("done", done);
+
     changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
   if (dataset.type === "todoEditBtn") {
@@ -189,6 +189,38 @@ deleteBtn.addEventListener("click", (event) => {
       onCancel: () => {},
     })
   );
+});
+
+document.addEventListener("keydown", (event) => {
+  const enterButton = document.getElementById("confirmBtnId");
+  if (!enterButton) return;
+  if (event.key == "Enter") {
+    enterButton.click();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  const escapeButton = document.getElementById("cancelBtnId");
+  if (!escapeButton) return;
+  if (event.key == "Escape") {
+    escapeButton.click();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  const escapeBtn = document.getElementById("cancelWarningId");
+  if (!escapeBtn) return;
+  if (event.key == "Escape") {
+    escapeBtn.click();
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  const enterBtn = document.getElementById("confirmWarningId");
+  if (!enterBtn) return;
+  if (event.key == "Enter") {
+    enterBtn.click();
+  }
 });
 
 // Filter in header
