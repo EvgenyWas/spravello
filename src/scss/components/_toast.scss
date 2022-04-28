@@ -21,21 +21,16 @@
     transition: width 2s, height 2s, transform 2s;
   
     &__title {
-    //   @include text-style(300, 20px, 22px);
       color: green;
     }
   
     &__close-btn {
       margin-left: 10px;
       padding: 12px;
-  
-    //   @include text-style(300, 20px, 22px);
-  
       background: none;
       border: none;
       border-radius: 10px;
       color: green;
-  
       cursor: pointer;
     }
   }
