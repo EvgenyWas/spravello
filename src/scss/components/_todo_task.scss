@@ -20,7 +20,7 @@
 }
 
 .task__header{
-    // display: flex;
+    display: flex;
     padding: 2px;
 }
 
@@ -71,7 +71,7 @@
 
 .task__btn-delete--header{
     margin-right: 0px;
-    margin-left: 80px;
+    // margin-left: 80px;
 }
 
 .task__btn-conversion{
@@ -102,7 +102,7 @@
         @include btn-active;
     }
 
-    margin-left: 110px;
+    margin-right: 105px;
 }
 
 .task__btn-complete{

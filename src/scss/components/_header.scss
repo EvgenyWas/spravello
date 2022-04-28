@@ -28,7 +28,11 @@
 }
 
 .header__form-btn{
-    margin-right: 20px;
+    padding-top: 3px;
+}
+.filter-btn:active{
+    height: 17px;
+    width: 17px;
 }
 
 //Media for Largescreen 1200px
@@ -38,8 +42,30 @@
     }
 }
 
+.header__select{
+    display: flex;
+    background-color: #9b9ca0;
+    width: 180px;
+    border-radius: 10px;
+    padding: 3px 5px;
+    margin-right: 15px;
+    align-content: center;
+}
+
+.header__filter{
+    flex-grow: 1;
+}
+
 @include sm {
+    .header__select{
+        background: none;
+        margin: 0;
+        width: 30px;
+    }
     .header__filter{
         display: none;
+    }
+    .header__form-btn{
+        display: block;
     }
 }
