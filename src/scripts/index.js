@@ -1,7 +1,5 @@
 import { myTime } from "./services/worldTimeApi";
 import { getUsersFromApi } from "./services/getUsersFromApi";
-import { addBtn, generateModalTask, arrayOfTodos } from "./components/todo.js";
-import { generateTodo } from "./components/functionsForDom";
 import { LOCAL_STORAGE_API } from "./services/localStorageApi";
 import { changeCount } from "./components/changeCount";
 
