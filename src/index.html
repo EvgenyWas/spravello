@@ -13,12 +13,14 @@
         <div class="header__box">
           <h2 class="header__title">Spravello</h2>
           <form class="header__form">
-            <select class="header__filter" id="filter">
-              <option>All</option>
-            </select>
-            <button type="button" class="header__form-btn" id="filter-button">
-              <img src="./assets/filter.svg" alt="filter-btn" />
-            </button>
+            <div class="header__select">
+              <select class="header__filter" id="filter">
+                <option selected disabled>Choose user</option>
+              </select>
+              <button type="button" class="header__form-btn" id="filter-button">
+                <img class="filter-btn" src="./assets/filter.svg" alt="filter-btn" />
+              </button>
+            </div>
           </form>
           <div class="header__box-time">
             <time class="header__time" id="time">10:37</time>
