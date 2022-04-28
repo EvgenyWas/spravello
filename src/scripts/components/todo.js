@@ -166,7 +166,7 @@ main.addEventListener("click", (event) => {
     );
     const userOpt = document.querySelector(".modal__list");
     getUsersFromApi(userOpt);
-  }
+  };
 
   changeCount();
   LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
@@ -246,15 +246,9 @@ filterButton.addEventListener("click", () => {
     return;
   };
 
-  let filteredArrayTodo = arrayOfTodos.filter(
-    (todo) => todo.todoUser === select.value && todo.isProgress === "start"
-  );
-  let filteredArrayInProgress = arrayOfTodos.filter(
-    (todo) => todo.todoUser === select.value && todo.isProgress === "inProgress"
-  );
-  let filteredArrayDone = arrayOfTodos.filter(
-    (todo) => todo.todoUser === select.value && todo.isProgress === "done"
-  );
+  let filteredArrayTodo = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "start");
+  let filteredArrayInProgress = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "inProgress");
+  let filteredArrayDone = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "done");
 
   function addTodo(list, node) {
     list.forEach((todo) =>
@@ -285,79 +279,90 @@ addBtn.addEventListener("click", () => {
 let dragged;
 
 const dragAndDrop = () => {
-const todoContainerFirst = document.querySelector(".todo__container");
-const todoContainerInProgress = document.querySelector(".inprogress__container");
-const todoContainerDone = document.querySelector(".done__container");
+  const todoContainerFirst = document.querySelector(".todo__container");
+  const todoContainerInProgress = document.querySelector(".inprogress__container");
+  const todoContainerDone = document.querySelector(".done__container");
 
-const dragStart = function (event) {
+  const dragStart = function (event) {
     dragged = event.target;
     event.dataTransfer.setData("id", event.target.dataset.id)
-}
-
-const dragEnd = function () {
-}
-
-const dragOver = function (event) {
+  };
+  const dragOver = function (event) {
     event.preventDefault();
-}
-
-const dragEnter = function (event) {
+  };
+  const dragEnter = function (event) {
     event.preventDefault();
-}
-
-const dragLeave = function (event) {
-}
-
-const dragDrop = function (event) {
+  };
+  const dragDrop = function (event) {
     this.childNodes[3].append(dragged)
-
     let taskId = event.dataTransfer.getData("id");
-
     let droppedTask = arrayOfTodos.filter(todo => +todo.todoId === +taskId);
 
+    const todoContainerHeader = dragged.childNodes[1];
+    const todoDeleteBtn = dragged.querySelector("[data-type = 'todoDeleteBtn']");
+    const todoEditBtn = dragged.querySelector("[data-type = 'todoEditBtnId']");
+    const todoConversionBtn = dragged.querySelector("[data-type = 'todoConversionBtn']");
+    const todoCompleteBtn = dragged.querySelector("[data-type = 'todoCompleteBtn']");
+    const todoBackBtn = dragged.querySelector("[data-type = 'todoBackBtn']");
+    const todoElementTitle = dragged.querySelector('#todoTitle');
+
     if (event.target.closest(".inprogress")) {
-        droppedTask[0].isProgress = "inProgress";
-        dragged.className = "task task--inprogress";
-        }
+      droppedTask[0].isProgress = "inProgress";
+      dragged.className = "task task--inprogress";
+
+      todoEditBtn.hidden = true;
+      todoConversionBtn.hidden = true;
+      todoDeleteBtn.hidden = true; 
+
+      todoBackBtn.hidden = false;
+      todoCompleteBtn.hidden = false;
+    }
     if (event.target.closest(".done")) {
-        droppedTask[0].isProgress = "done";
-        dragged.className = "task task--done";
-        }
+      droppedTask[0].isProgress = "done";
+      dragged.className = "task task--done";
+
+      todoContainerHeader.className = "task__header task__header--done"
+      todoDeleteBtn.className ="task__btn-delete task__btn-delete--header";
+      todoEditBtn.hidden = true;
+      todoConversionBtn.hidden = true;
+      todoCompleteBtn.hidden = true;
+      todoBackBtn.hidden = true;
+
+      todoDeleteBtn.hidden = false;
+      todoContainerHeader.append(todoElementTitle);
+    }
     if (event.target.closest(".todo")) {
-            droppedTask[0].isProgress = "start";
-            dragged.className = "task task--todo";
-            }
+      droppedTask[0].isProgress = "start";
+      dragged.className = "task task--todo";
 
-        arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
-        arrayOfTodos.push(droppedTask[0]);
+      todoCompleteBtn.hidden = true;
+      todoBackBtn.hidden = true;
 
-changeCount()
-LOCAL_STORAGE_API.setStorageData(arrayOfTodos)
-        
-}
+      todoEditBtn.hidden = false;
+      todoConversionBtn.hidden = false;
+      todoDeleteBtn.hidden = false;
+    }
+    arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
+    arrayOfTodos.push(droppedTask[0]);
 
-todoContainerFirst.addEventListener("dragstart", dragStart);
-todoContainerFirst.addEventListener("dragend", dragEnd);
-todoContainerFirst.addEventListener("dragover", dragOver);
-todoContainerFirst.addEventListener("dragenter", dragEnter);
-todoContainerFirst.addEventListener("dragleave", dragLeave);
-todoContainerFirst.addEventListener("drop", dragDrop);
+    changeCount()
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos)      
+  };
 
-todoContainerInProgress.addEventListener("dragstart", dragStart);
-todoContainerInProgress.addEventListener("dragend", dragEnd);
-todoContainerInProgress.addEventListener("dragover", dragOver);
-todoContainerInProgress.addEventListener("dragenter", dragEnter);
-todoContainerInProgress.addEventListener("dragleave", dragLeave);
-todoContainerInProgress.addEventListener("drop", dragDrop);
+  todoContainerFirst.addEventListener("dragstart", dragStart);
+  todoContainerFirst.addEventListener("dragover", dragOver);
+  todoContainerFirst.addEventListener("dragenter", dragEnter);
+  todoContainerFirst.addEventListener("drop", dragDrop);
 
-todoContainerDone.addEventListener("dragstart", dragStart);
-todoContainerDone.addEventListener("dragend", dragEnd);
-todoContainerDone.addEventListener("dragover", dragOver);
-todoContainerDone.addEventListener("dragenter", dragEnter);
-todoContainerDone.addEventListener("dragleave", dragLeave);
-todoContainerDone.addEventListener("drop", dragDrop);
+  todoContainerInProgress.addEventListener("dragstart", dragStart);
+  todoContainerInProgress.addEventListener("dragover", dragOver);
+  todoContainerInProgress.addEventListener("dragenter", dragEnter);
+  todoContainerInProgress.addEventListener("drop", dragDrop);
 
-}
+  todoContainerDone.addEventListener("dragstart", dragStart);
+  todoContainerDone.addEventListener("dragover", dragOver);
+  todoContainerDone.addEventListener("dragenter", dragEnter);
+  todoContainerDone.addEventListener("drop", dragDrop);
+};
 
-export { dragAndDrop };
-export { arrayOfTodos };
+export { arrayOfTodos, dragAndDrop };

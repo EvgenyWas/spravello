@@ -1,40 +1,41 @@
 .toast {
-    position: fixed;
-    top: 200px;
-    left: 0;
-    right: 0;
-    z-index: 50;
-  
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  
-    max-width: 40%;
-    min-width: 300px;
-    margin: auto;
-    padding: 0px 20px;
-  
-    transform: translateX(200%);
-    border-radius: 20px;
-    background: red;
-  
-    transition: width 2s, height 2s, transform 2s;
-  
-    &__title {
-      color: green;
-    }
-  
-    &__close-btn {
-      margin-left: 10px;
-      padding: 12px;
-      background: none;
-      border: none;
-      border-radius: 10px;
-      color: green;
-      cursor: pointer;
-    }
+  position: fixed;
+  top: 200px;
+  left: 0;
+  right: 0;
+  z-index: 50;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 40%;
+  min-width: 300px;
+  margin: auto;
+  padding: 0px 20px;
+
+  transform: translateX(200%);
+  border: 1px solid black;
+  border-radius: 20px;
+  background: $todo-color;
+
+  transition: width 2s, height 2s, transform 2s;
+
+  &__title {
+    color: $primary-color;
   }
-  
-  .toast--visible {
-    transform: translateX(0);
+
+  &__close-btn {
+    margin-left: 10px;
+    padding: 12px;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    color: $primary-color;
+    cursor: pointer;
   }
+}
+  
+.toast--visible {
+  transform: translateX(0);
+}
