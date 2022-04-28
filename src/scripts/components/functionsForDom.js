@@ -1,16 +1,10 @@
 import { createElement } from "../templates/templates";
-import { getUsersFromApi } from "../services/getUsersFromApi";
-import { arrayOfTodos } from "./todo";
 
 
 const generateModalTask = (title = "", desc = "") => {
   const modalWindow = createElement("div", "modal__window");
   const titleModal = createElement("textarea", "modal__title", title);
-  const modalDescription = createElement(
-    "textarea",
-    "modal__description",
-    desc
-  );
+  const modalDescription = createElement("textarea", "modal__description", desc);
   const modalOptions = createElement("div", "modal__options");
   const selectModal = createElement("select", "modal__list", "Select User");
   const cancelBtn = createElement("button", "modal__cancel", "Сancel");
@@ -46,24 +40,13 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   const todoEditBtn = createElement("button", "task__btn-edit", "Edit");
   const todoDeleteBtn = createElement("button", "task__btn-delete", "Delete");
   const todoElementTime = createElement("span", "task__time", todoTime);
-  const todoConversionBtn = createElement("button","task__btn-conversion","➣");
+  const todoConversionBtn = createElement("button", "task__btn-conversion", "➣");
   const todoBackBtn = createElement("button", "task__btn-back", "Back");
-  const todoCompleteBtn = createElement("button","task__btn-complete","Complete");
+  const todoCompleteBtn = createElement("button", "task__btn-complete", "Complete");
 
-  todoContainerHeader.append(
-    todoEditBtn,
-    todoDeleteBtn,
-    todoConversionBtn,
-    todoBackBtn,
-    todoCompleteBtn
-  );
+  todoContainerHeader.append(todoEditBtn, todoDeleteBtn, todoConversionBtn, todoBackBtn, todoCompleteBtn);
   todoContainerFooter.append(todoElementUser, todoElementTime);
-  todoContainer.append(
-    todoContainerHeader,
-    todoElementTitle,
-    todoElementDescription,
-    todoContainerFooter
-  );
+  todoContainer.append(todoContainerHeader, todoElementTitle, todoElementDescription, todoContainerFooter);
 
   todoContainer.dataset.id = todoId;
   todoContainer.dataset.isProgress = isProgress;
@@ -71,7 +54,7 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
   todoBackBtn.dataset.type = "todoBackBtn";
-  todoCompleteBtn.dataset.type = "todoCompleteBtn"
+  todoCompleteBtn.dataset.type = "todoCompleteBtn";
   todoEditBtn.id = "todoEditBtnId";
   todoContainer.id = "editTodoTask";
   todoContainer.dataset.type = "todoContainer";
@@ -79,13 +62,30 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoElementDescription.id = "todoDesc"
   todoElementUser.id = "todoUser"
   todoContainer.draggable = true;
+  
+  if (isProgress === "start") {
+    todoCompleteBtn.hidden = "true";
+    todoBackBtn.hidden = "true";
+  } else if (isProgress === "inProgress") {
+    todoContainer.className = "task task--inprogress";
+    todoEditBtn.hidden = "true";
+    todoConversionBtn.hidden = "true";
+    todoDeleteBtn.hidden = "delete"; 
+  } else if (isProgress === "done"){
+    todoContainer.className = "task task--done";
+    todoContainerHeader.className = "task__header task__header--done"
+    todoDeleteBtn.className ="task__btn-delete task__btn-delete--header";
+    todoEditBtn.hidden = "true";
+    todoConversionBtn.hidden = "true";
+    todoCompleteBtn.hidden = "true";
+    todoBackBtn.hidden = "true";
+    todoContainerHeader.append(todoElementTitle);  
+  };
 
-  todoContainer.className =
-    isProgress === "inProgress" ? "task task--inprogress" : "task";
   return todoContainer;
 }
 
-function generateWarning() {
+function generateWarning({ onConfirm, onCancel }) {
   const modalContainer = createElement("div", "modal-warning__container");
   const modalTitle = createElement("h3", "modal-warning__title", "Warning!");
   const modalButtons = createElement("div", "modal-warning__buttons");
@@ -102,15 +102,26 @@ function generateWarning() {
 
   modalContainer.append(modalTitle, modalButtons);
   modalButtons.append(modalCancelBtn, modalConfirmBtn);
+  const overlay = document.getElementById("overlay");
 
-  modalCancelBtn.dataset.type = "CancelWarning";
-  modalConfirmBtn.dataset.type = "ConfirmWarning";
-  modalConfirmBtn.id = "ConfirmWarningId";
-  modalCancelBtn.id = "CancelWarningId";
-  modalContainer.id = "modalContainer"
-  
-  // const overlay = document.getElementById("overlay");
-  // overlay.classList.add("is-show");
+  modalCancelBtn.dataset.type = "cancelWarning";
+  modalConfirmBtn.dataset.type = "confirmWarning";
+  modalConfirmBtn.id = "confirmWarningId";
+  modalCancelBtn.id = "cancelWarningId";
+  modalContainer.id = "modalContainer";
+  modalCancelBtn.addEventListener("click", () => {
+    onCancel();
+    document.querySelector("#modalContainer").remove();
+    overlay.classList.remove("is-show");
+  });
+
+  modalConfirmBtn.addEventListener("click", () => {
+    onConfirm();
+    document.querySelector("#modalContainer").remove();
+
+    overlay.classList.remove("is-show");
+  });
+  overlay.classList.add("is-show");
 
   return modalContainer;
 }
