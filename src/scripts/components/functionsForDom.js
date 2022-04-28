@@ -2,6 +2,7 @@ import { createElement } from "../templates/templates";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { arrayOfTodos } from "./todo";
 
+
 const generateModalTask = (title = "", desc = "") => {
   const modalWindow = createElement("div", "modal__window");
   const titleModal = createElement("textarea", "modal__title", title);
@@ -73,6 +74,7 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoCompleteBtn.dataset.type = "todoCompleteBtn"
   todoEditBtn.id = "todoEditBtnId";
   todoContainer.id = "editTodoTask";
+  todoContainer.dataset.type = "todoContainer";
   todoElementTitle.id = "todoTitle"
   todoElementDescription.id = "todoDesc"
   todoElementUser.id = "todoUser"

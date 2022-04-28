@@ -4,6 +4,8 @@ import { addBtn, generateModalTask, arrayOfTodos } from "./components/todo.js";
 import { generateTodo } from "./components/functionsForDom";
 import { LOCAL_STORAGE_API } from "./services/localStorageApi";
 import { changeCount } from "./components/changeCount";
+import { dragAndDrop } from "./components/todo";
+import { toast } from "./components/toast";
 
 const selectInHeader = document.getElementById('filter');
 
@@ -13,6 +15,8 @@ function app() {
   LOCAL_STORAGE_API.addTasksFromStorageData();
   changeCount();
   getUsersFromApi(selectInHeader);
+  dragAndDrop();
+  toast.init();
 };
 
 // Launch time in header
