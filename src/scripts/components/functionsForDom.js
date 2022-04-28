@@ -1,5 +1,6 @@
 import { createElement } from "../templates/templates";
 
+
 const generateModalTask = (title = "", desc = "") => {
   const modalWindow = createElement("div", "modal__window");
   const titleModal = createElement("textarea", "modal__title", title);
@@ -56,9 +57,11 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
   todoCompleteBtn.dataset.type = "todoCompleteBtn";
   todoEditBtn.id = "todoEditBtnId";
   todoContainer.id = "editTodoTask";
+  todoContainer.dataset.type = "todoContainer";
   todoElementTitle.id = "todoTitle"
   todoElementDescription.id = "todoDesc"
   todoElementUser.id = "todoUser"
+  todoContainer.draggable = true;
   
   if (isProgress === "start") {
     todoCompleteBtn.hidden = "true";

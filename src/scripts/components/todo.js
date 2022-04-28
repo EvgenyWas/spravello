@@ -282,4 +282,82 @@ addBtn.addEventListener("click", () => {
   getUsersFromApi(userOpt);
 });
 
+let dragged;
+
+const dragAndDrop = () => {
+const todoContainerFirst = document.querySelector(".todo__container");
+const todoContainerInProgress = document.querySelector(".inprogress__container");
+const todoContainerDone = document.querySelector(".done__container");
+
+const dragStart = function (event) {
+    dragged = event.target;
+    event.dataTransfer.setData("id", event.target.dataset.id)
+}
+
+const dragEnd = function () {
+}
+
+const dragOver = function (event) {
+    event.preventDefault();
+}
+
+const dragEnter = function (event) {
+    event.preventDefault();
+}
+
+const dragLeave = function (event) {
+}
+
+const dragDrop = function (event) {
+    this.childNodes[3].append(dragged)
+
+    let taskId = event.dataTransfer.getData("id");
+
+    let droppedTask = arrayOfTodos.filter(todo => +todo.todoId === +taskId);
+
+    if (event.target.closest(".inprogress")) {
+        droppedTask[0].isProgress = "inProgress";
+        dragged.className = "task task--inprogress";
+        }
+    if (event.target.closest(".done")) {
+        droppedTask[0].isProgress = "done";
+        dragged.className = "task task--done";
+        }
+    if (event.target.closest(".todo")) {
+            droppedTask[0].isProgress = "start";
+            dragged.className = "task task--todo";
+            }
+
+        arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
+        arrayOfTodos.push(droppedTask[0]);
+
+changeCount()
+LOCAL_STORAGE_API.setStorageData(arrayOfTodos)
+        
+}
+
+todoContainerFirst.addEventListener("dragstart", dragStart);
+todoContainerFirst.addEventListener("dragend", dragEnd);
+todoContainerFirst.addEventListener("dragover", dragOver);
+todoContainerFirst.addEventListener("dragenter", dragEnter);
+todoContainerFirst.addEventListener("dragleave", dragLeave);
+todoContainerFirst.addEventListener("drop", dragDrop);
+
+todoContainerInProgress.addEventListener("dragstart", dragStart);
+todoContainerInProgress.addEventListener("dragend", dragEnd);
+todoContainerInProgress.addEventListener("dragover", dragOver);
+todoContainerInProgress.addEventListener("dragenter", dragEnter);
+todoContainerInProgress.addEventListener("dragleave", dragLeave);
+todoContainerInProgress.addEventListener("drop", dragDrop);
+
+todoContainerDone.addEventListener("dragstart", dragStart);
+todoContainerDone.addEventListener("dragend", dragEnd);
+todoContainerDone.addEventListener("dragover", dragOver);
+todoContainerDone.addEventListener("dragenter", dragEnter);
+todoContainerDone.addEventListener("dragleave", dragLeave);
+todoContainerDone.addEventListener("drop", dragDrop);
+
+}
+
+export { dragAndDrop };
 export { arrayOfTodos };
