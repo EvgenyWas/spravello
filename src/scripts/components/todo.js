@@ -1,9 +1,5 @@
 import { changeCount } from "./changeCount";
-import {
-  generateModalTask,
-  generateTodo,
-  generateWarning,
-} from "./functionsForDom";
+import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
 import { dateToLocaleString } from "../templates/tools";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "../services/localStorageApi";
@@ -27,6 +23,7 @@ const TodoCreation = function (
   this.isProgress = isProgress;
 };
 
+// delegated events for todo via main
 main.addEventListener("click", (event) => {
   const { target } = event;
   const { dataset } = target;
@@ -175,8 +172,9 @@ main.addEventListener("click", (event) => {
   LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
 });
 
+// Button Delete all
 const deleteBtn = document.querySelector("#deleteall-button");
-deleteBtn.addEventListener("click", (event) => {
+deleteBtn.addEventListener("click", () => {
   main.append(
     generateWarning({
       onConfirm: () => {
@@ -191,6 +189,7 @@ deleteBtn.addEventListener("click", (event) => {
   );
 });
 
+// Listeners for keydowns Enter and Escapes for modal winwdows
 document.addEventListener("keydown", (event) => {
   const enterButton = document.getElementById("confirmBtnId");
   if (!enterButton) return;
@@ -259,14 +258,13 @@ filterButton.addEventListener("click", () => {
 
   function addTodo(list, node) {
     list.forEach((todo) =>
-      node.append(
-        generateTodo(
-          todo.todoId,
-          todo.todoTitle,
-          todo.todoDesk,
-          todo.todoUser,
-          todo.todoTime,
-          todo.isProgress
+      node.append(generateTodo(
+        todo.todoId,
+        todo.todoTitle,
+        todo.todoDesk,
+        todo.todoUser,
+        todo.todoTime,
+        todo.isProgress
         )
       )
     );
