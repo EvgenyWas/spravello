@@ -291,59 +291,45 @@ const todoContainerDone = document.querySelector(".done__container");
 
 const dragStart = function (event) {
     dragged = event.target;
-    console.log(dragged);
-    console.log("start");
     event.dataTransfer.setData("id", event.target.dataset.id)
 }
 
 const dragEnd = function () {
-    console.log("end");
 }
 
 const dragOver = function (event) {
     event.preventDefault();
-    console.log("over");
 }
 
 const dragEnter = function (event) {
     event.preventDefault();
-    console.log("enter");
 }
 
 const dragLeave = function (event) {
-    console.log("leave");
 }
 
 const dragDrop = function (event) {
     this.childNodes[3].append(dragged)
 
     let taskId = event.dataTransfer.getData("id");
-    console.log(taskId);
 
     let droppedTask = arrayOfTodos.filter(todo => +todo.todoId === +taskId);
-    console.log(droppedTask);
 
-    console.log(event.target.parentNode.className);
-    console.log(event.target.closest(".done"));
     if (event.target.closest(".inprogress")) {
-        console.log(event.target);
         droppedTask[0].isProgress = "inProgress";
         dragged.className = "task task--inprogress";
         }
     if (event.target.closest(".done")) {
-        console.log(event.target);
         droppedTask[0].isProgress = "done";
         dragged.className = "task task--done";
         }
     if (event.target.closest(".todo")) {
-            console.log(event.target);
             droppedTask[0].isProgress = "start";
             dragged.className = "task task--todo";
             }
 
         arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
         arrayOfTodos.push(droppedTask[0]);
-        console.log(arrayOfTodos);
 
 changeCount()
 LOCAL_STORAGE_API.setStorageData(arrayOfTodos)

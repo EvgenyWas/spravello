@@ -1,7 +1,7 @@
 const options = {
     message: "Данная страница создана командой Spravello!",
     root: document.querySelector("#toast"),
-    OPEN_DELAY: 1500,
+    OPEN_DELAY: 15000,
     CLOSE_DELAY: 5000,
   };
   
