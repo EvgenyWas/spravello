@@ -1,4 +1,4 @@
-import { myTime } from "./services/worldTimeApi";
+import { myTime } from "./services/myTime";
 import { getUsersFromApi } from "./services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "./services/localStorageApi";
 import { changeCount } from "./components/changeCount";

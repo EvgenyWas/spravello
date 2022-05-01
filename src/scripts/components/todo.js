@@ -1,20 +1,13 @@
 import { changeCount } from "./changeCount";
 import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
-import { dateToLocaleString } from "../templates/tools";
+import { dateToLocaleString } from "../templates/utils";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 
 let arrayOfTodos = [];
 let editCounter = 0;
 let selectedTodo;
-const TodoCreation = function (
-  todoId,
-  todoTitle,
-  todoDesk,
-  todoUser,
-  todoTime,
-  isProgress
-) {
+const TodoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
   this.todoId = todoId;
   this.todoTitle = todoTitle;
   this.todoDesk = todoDesk;
@@ -56,9 +49,11 @@ main.addEventListener("click", (event) => {
       arrayOfTodos[selectedTodo].todoTitle = titleId.value;
       arrayOfTodos[selectedTodo].todoDesk = descId.value;
       arrayOfTodos[selectedTodo].todoUser = selectId.value;
+
       taskTitle.innerText = titleId.value;
       taskDesk.innerText = descId.value;
       taskUser.innerText = selectId.value;
+
       target.parentNode.parentNode.remove();
       LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
       return;
@@ -96,8 +91,8 @@ main.addEventListener("click", (event) => {
 
   if (dataset.type === "todoDeleteBtn") {
     let selectedTodoDelete = arrayOfTodos.findIndex(
-      (todo) => +todo.todoId === +target.closest(".task").dataset.id
-    );
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id);
+    
     target.closest(".task").remove();
     arrayOfTodos.splice(selectedTodoDelete, 1);
     changeCount();
@@ -110,13 +105,12 @@ main.addEventListener("click", (event) => {
     dataset.type === "todoCompleteBtn"
   ) {
     const selectedTodo = arrayOfTodos.findIndex(
-      (todo) => +todo.todoId === +target.closest(".task").dataset.id
-    );
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id);
     const todo = document.querySelector("#todo-tasks");
     const done = document.querySelector("#done-tasks");
     const inprogress = document.querySelector("#inprogress-tasks");
-    
     const targetTodo = arrayOfTodos[selectedTodo];
+
     function swapTodo(unit, node) {
       targetTodo.isProgress = unit;
       node.append(
@@ -153,17 +147,15 @@ main.addEventListener("click", (event) => {
     LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   }
 
-  if (dataset.type === "todoEditBtn") {
+  if (dataset.type === "todoEditBtnId") {
     editCounter = 1;
     selectedTodo = arrayOfTodos.findIndex(
-      (todo) => +todo.todoId === +target.closest(".task").dataset.id
-    );
-    main.append(
-      generateModalTask(
-        arrayOfTodos[selectedTodo].todoTitle,
-        arrayOfTodos[selectedTodo].todoDesk
-      )
-    );
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id);
+
+    main.append(generateModalTask(
+      arrayOfTodos[selectedTodo].todoTitle,
+      arrayOfTodos[selectedTodo].todoDesk));
+
     const userOpt = document.querySelector(".modal__list");
     getUsersFromApi(userOpt);
   };
@@ -193,6 +185,7 @@ deleteBtn.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
   const enterButton = document.getElementById("confirmBtnId");
   if (!enterButton) return;
+
   if (event.key == "Enter") {
     enterButton.click();
   }
@@ -201,6 +194,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keydown", (event) => {
   const escapeButton = document.getElementById("cancelBtnId");
   if (!escapeButton) return;
+
   if (event.key == "Escape") {
     escapeButton.click();
   }
@@ -209,6 +203,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keydown", (event) => {
   const escapeBtn = document.getElementById("cancelWarningId");
   if (!escapeBtn) return;
+
   if (event.key == "Escape") {
     escapeBtn.click();
   }
@@ -217,6 +212,7 @@ document.addEventListener("keydown", (event) => {
 document.addEventListener("keydown", (event) => {
   const enterBtn = document.getElementById("confirmWarningId");
   if (!enterBtn) return;
+
   if (event.key == "Enter") {
     enterBtn.click();
   }
@@ -270,12 +266,14 @@ filterButton.addEventListener("click", () => {
 });
 
 const addBtn = document.querySelector("#add-button");
+
 addBtn.addEventListener("click", () => {
   main.append(generateModalTask());
   const userOpt = document.querySelector(".modal__list");
   getUsersFromApi(userOpt);
 });
 
+// Drag&Drop
 let dragged;
 
 const dragAndDrop = () => {
@@ -287,12 +285,15 @@ const dragAndDrop = () => {
     dragged = event.target;
     event.dataTransfer.setData("id", event.target.dataset.id)
   };
+
   const dragOver = function (event) {
     event.preventDefault();
   };
+
   const dragEnter = function (event) {
     event.preventDefault();
   };
+
   const dragDrop = function (event) {
     this.childNodes[3].append(dragged)
     let taskId = event.dataTransfer.getData("id");
@@ -317,6 +318,7 @@ const dragAndDrop = () => {
       todoBackBtn.hidden = false;
       todoCompleteBtn.hidden = false;
     }
+
     if (event.target.closest(".done")) {
       droppedTask[0].isProgress = "done";
       dragged.className = "task task--done";
@@ -331,6 +333,7 @@ const dragAndDrop = () => {
       todoDeleteBtn.hidden = false;
       todoContainerHeader.append(todoElementTitle);
     }
+
     if (event.target.closest(".todo")) {
       droppedTask[0].isProgress = "start";
       dragged.className = "task task--todo";
@@ -342,6 +345,7 @@ const dragAndDrop = () => {
       todoConversionBtn.hidden = false;
       todoDeleteBtn.hidden = false;
     }
+
     arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
     arrayOfTodos.push(droppedTask[0]);
 

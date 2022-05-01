@@ -50,14 +50,12 @@ function generateTodo(todoId, todoTitle, todoDesk, todoUser, todoTime, isProgres
 
   todoContainer.dataset.id = todoId;
   todoContainer.dataset.isProgress = isProgress;
-  todoEditBtn.dataset.type = "todoEditBtn";
+  todoEditBtn.dataset.type = "todoEditBtnId";
   todoDeleteBtn.dataset.type = "todoDeleteBtn";
   todoConversionBtn.dataset.type = "todoConversionBtn";
   todoBackBtn.dataset.type = "todoBackBtn";
   todoCompleteBtn.dataset.type = "todoCompleteBtn";
-  todoEditBtn.dataset.type = "todoEditBtnId";
   todoEditBtn.id = "todoEditBtnId";
-  todoContainer.id = "editTodoTask";
   todoContainer.dataset.type = "todoContainer";
   todoElementTitle.id = "todoTitle"
   todoElementDescription.id = "todoDesc"
