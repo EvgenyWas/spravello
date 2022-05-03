@@ -1,5 +1,9 @@
 import { changeCount } from "./changeCount";
-import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
+import {
+  generateModalTask,
+  generateTodo,
+  generateWarning,
+} from "./functionsForDom";
 import { dateToLocaleString } from "../templates/utils";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "../services/localStorageApi";
@@ -7,7 +11,14 @@ import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 let arrayOfTodos = [];
 let editCounter = 0;
 let selectedTodo;
-const TodoCreation = function (todoId, todoTitle, todoDesk, todoUser, todoTime, isProgress) {
+const TodoCreation = function (
+  todoId,
+  todoTitle,
+  todoDesk,
+  todoUser,
+  todoTime,
+  isProgress
+) {
   this.todoId = todoId;
   this.todoTitle = todoTitle;
   this.todoDesk = todoDesk;
@@ -91,8 +102,9 @@ main.addEventListener("click", (event) => {
 
   if (dataset.type === "todoDeleteBtn") {
     let selectedTodoDelete = arrayOfTodos.findIndex(
-      (todo) => +todo.todoId === +target.closest(".task").dataset.id);
-    
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id
+    );
+
     target.closest(".task").remove();
     arrayOfTodos.splice(selectedTodoDelete, 1);
     changeCount();
@@ -105,7 +117,8 @@ main.addEventListener("click", (event) => {
     dataset.type === "todoCompleteBtn"
   ) {
     const selectedTodo = arrayOfTodos.findIndex(
-      (todo) => +todo.todoId === +target.closest(".task").dataset.id);
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id
+    );
     const todo = document.querySelector("#todo-tasks");
     const done = document.querySelector("#done-tasks");
     const inprogress = document.querySelector("#inprogress-tasks");
@@ -133,7 +146,9 @@ main.addEventListener("click", (event) => {
         main.append(
           generateWarning({
             onConfirm: () => swapTodo("inProgress", inprogress),
-            onCancel: () => {return},
+            onCancel: () => {
+              return;
+            },
           })
         );
       }
@@ -150,15 +165,19 @@ main.addEventListener("click", (event) => {
   if (dataset.type === "todoEditBtnId") {
     editCounter = 1;
     selectedTodo = arrayOfTodos.findIndex(
-      (todo) => +todo.todoId === +target.closest(".task").dataset.id);
+      (todo) => +todo.todoId === +target.closest(".task").dataset.id
+    );
 
-    main.append(generateModalTask(
-      arrayOfTodos[selectedTodo].todoTitle,
-      arrayOfTodos[selectedTodo].todoDesk));
+    main.append(
+      generateModalTask(
+        arrayOfTodos[selectedTodo].todoTitle,
+        arrayOfTodos[selectedTodo].todoDesk
+      )
+    );
 
     const userOpt = document.querySelector(".modal__list");
     getUsersFromApi(userOpt);
-  };
+  }
 
   changeCount();
   LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
@@ -179,6 +198,10 @@ deleteBtn.addEventListener("click", () => {
       onCancel: () => {},
     })
   );
+});
+overlay.addEventListener("click", function () {
+  document.querySelector("#modalContainer").remove();
+  overlay.classList.remove("is-show");
 });
 
 // Listeners for keydowns Enter and Escapes for modal winwdows
@@ -231,30 +254,41 @@ filterButton.addEventListener("click", () => {
   listInProgress.innerHTML = "";
   listDone.innerHTML = "";
 
-  if (select.value === 'All') {
-    let tasksInTodo = arrayOfTodos.filter(task => task.isProgress === 'start');
-    let tasksInInprogress = arrayOfTodos.filter(task => task.isProgress === 'inProgress');
-    let tasksInDone = arrayOfTodos.filter(task => task.isProgress === 'done');
+  if (select.value === "All") {
+    let tasksInTodo = arrayOfTodos.filter(
+      (task) => task.isProgress === "start"
+    );
+    let tasksInInprogress = arrayOfTodos.filter(
+      (task) => task.isProgress === "inProgress"
+    );
+    let tasksInDone = arrayOfTodos.filter((task) => task.isProgress === "done");
 
     addTodo(tasksInTodo, listTodo);
     addTodo(tasksInInprogress, listInProgress);
     addTodo(tasksInDone, listDone);
     return;
-  };
+  }
 
-  let filteredArrayTodo = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "start");
-  let filteredArrayInProgress = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "inProgress");
-  let filteredArrayDone = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "done");
+  let filteredArrayTodo = arrayOfTodos.filter(
+    (todo) => todo.todoUser === select.value && todo.isProgress === "start"
+  );
+  let filteredArrayInProgress = arrayOfTodos.filter(
+    (todo) => todo.todoUser === select.value && todo.isProgress === "inProgress"
+  );
+  let filteredArrayDone = arrayOfTodos.filter(
+    (todo) => todo.todoUser === select.value && todo.isProgress === "done"
+  );
 
   function addTodo(list, node) {
     list.forEach((todo) =>
-      node.append(generateTodo(
-        todo.todoId,
-        todo.todoTitle,
-        todo.todoDesk,
-        todo.todoUser,
-        todo.todoTime,
-        todo.isProgress
+      node.append(
+        generateTodo(
+          todo.todoId,
+          todo.todoTitle,
+          todo.todoDesk,
+          todo.todoUser,
+          todo.todoTime,
+          todo.isProgress
         )
       )
     );
@@ -278,12 +312,14 @@ let dragged;
 
 const dragAndDrop = () => {
   const todoContainerFirst = document.querySelector(".todo__container");
-  const todoContainerInProgress = document.querySelector(".inprogress__container");
+  const todoContainerInProgress = document.querySelector(
+    ".inprogress__container"
+  );
   const todoContainerDone = document.querySelector(".done__container");
 
   const dragStart = function (event) {
     dragged = event.target;
-    event.dataTransfer.setData("id", event.target.dataset.id)
+    event.dataTransfer.setData("id", event.target.dataset.id);
   };
 
   const dragOver = function (event) {
@@ -295,17 +331,23 @@ const dragAndDrop = () => {
   };
 
   const dragDrop = function (event) {
-    this.childNodes[3].append(dragged)
+    this.childNodes[3].append(dragged);
     let taskId = event.dataTransfer.getData("id");
-    let droppedTask = arrayOfTodos.filter(todo => +todo.todoId === +taskId);
+    let droppedTask = arrayOfTodos.filter((todo) => +todo.todoId === +taskId);
 
     const todoContainerHeader = dragged.childNodes[1];
-    const todoDeleteBtn = dragged.querySelector("[data-type = 'todoDeleteBtn']");
+    const todoDeleteBtn = dragged.querySelector(
+      "[data-type = 'todoDeleteBtn']"
+    );
     const todoEditBtn = dragged.querySelector("[data-type = 'todoEditBtnId']");
-    const todoConversionBtn = dragged.querySelector("[data-type = 'todoConversionBtn']");
-    const todoCompleteBtn = dragged.querySelector("[data-type = 'todoCompleteBtn']");
+    const todoConversionBtn = dragged.querySelector(
+      "[data-type = 'todoConversionBtn']"
+    );
+    const todoCompleteBtn = dragged.querySelector(
+      "[data-type = 'todoCompleteBtn']"
+    );
     const todoBackBtn = dragged.querySelector("[data-type = 'todoBackBtn']");
-    const todoElementTitle = dragged.querySelector('#todoTitle');
+    const todoElementTitle = dragged.querySelector("#todoTitle");
 
     if (event.target.closest(".inprogress")) {
       droppedTask[0].isProgress = "inProgress";
@@ -313,7 +355,7 @@ const dragAndDrop = () => {
 
       todoEditBtn.hidden = true;
       todoConversionBtn.hidden = true;
-      todoDeleteBtn.hidden = true; 
+      todoDeleteBtn.hidden = true;
 
       todoBackBtn.hidden = false;
       todoCompleteBtn.hidden = false;
@@ -323,8 +365,8 @@ const dragAndDrop = () => {
       droppedTask[0].isProgress = "done";
       dragged.className = "task task--done";
 
-      todoContainerHeader.className = "task__header task__header--done"
-      todoDeleteBtn.className ="task__btn-delete task__btn-delete--header";
+      todoContainerHeader.className = "task__header task__header--done";
+      todoDeleteBtn.className = "task__btn-delete task__btn-delete--header";
       todoEditBtn.hidden = true;
       todoConversionBtn.hidden = true;
       todoCompleteBtn.hidden = true;
@@ -346,11 +388,11 @@ const dragAndDrop = () => {
       todoDeleteBtn.hidden = false;
     }
 
-    arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
+    arrayOfTodos = arrayOfTodos.filter((todo) => +todo.todoId !== +taskId);
     arrayOfTodos.push(droppedTask[0]);
 
-    changeCount()
-    LOCAL_STORAGE_API.setStorageData(arrayOfTodos)      
+    changeCount();
+    LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
   };
 
   todoContainerFirst.addEventListener("dragstart", dragStart);

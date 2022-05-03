@@ -117,7 +117,6 @@ function generateWarning({ onConfirm, onCancel }) {
   modalConfirmBtn.addEventListener("click", () => {
     onConfirm();
     document.querySelector("#modalContainer").remove();
-
     overlay.classList.remove("is-show");
   });
   overlay.classList.add("is-show");
