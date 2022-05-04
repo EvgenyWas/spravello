@@ -1,5 +1,6 @@
 import { generateTodo } from "../components/functionsForDom";
 import { arrayOfTodos } from "../components/todo";
+import { appendToList } from "../templates/utils";
 
 const LOCAL_STORAGE_API = {
   key: {
@@ -21,18 +22,7 @@ const LOCAL_STORAGE_API = {
     let tasksInInprogress = storageData.filter(task => task.isProgress === 'inProgress');
     let tasksInDone = storageData.filter(task => task.isProgress === 'done');
 
-    const appendToList = (arr, node) => {
-      arr.forEach(task => {
-        node.append(generateTodo(
-          task.todoId,
-          task.todoTitle,
-          task.todoDesk,
-          task.todoUser,
-          task.todoTime,
-          task.isProgress));
-          arrayOfTodos.push(task);
-      });
-    };
+   
 
     appendToList(tasksInTodo, listTodo);
     appendToList(tasksInInprogress, listInProgress);
