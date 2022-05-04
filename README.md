@@ -18,7 +18,7 @@
     <ul>
       <li><a href="#Header">Header</a></li>
       <li>
-        <a href="#Todo-cards">Todo Cards</a>
+        <a href="#Todo-cards">Todo's Lists</a>
         <ul>
           <li><a href="#Todo">Todo</a></li>
           <li><a href="#In-Progress">In Progress</a></li>
@@ -34,8 +34,7 @@
 
 ## About the project 
 
-The "Spravello" project is a simplified version of the
-cloud-based small group project management software "Trello". 
+The "Spravello" project is a simplified version of the cloud-based software which manages small groups' projects "Trello".
 
 [<img src="./src/assets/Project.png" alt="Project">]()
 
@@ -66,21 +65,23 @@ cloud-based small group project management software "Trello".
 1.  Website logo
 2.	You can easily find any user among the tasks using the filter list.
 3.	After selecting a user, use the filter button to find the user you want.
-4.  The clock will always show you the current time so that you can easily keep track of it.
+4.  The clock always shows the current time so that you can easily keep track of it.
+
+
 
 ## Todo cards
 
-Далее вы увидите три колонки для размещения ваших задач "todo".
+Next you will see three columns for placing your "todo" tasks.
 
 [<img src="./src/assets/Cards.png" alt="Cards">]()
 
 ### Todo
 
-The "todo" column contains all tasks that are not in progress and have not been completed. There is an "Add todo" button on the card to add a new task. Then a modal window opens with a header, main text, a button which, when clicked, selects a specific user to perform the task and an accept button which will add the task to the board, and a cancel button which will simply delete this "Todo".
+The "todo" column contains all tasks that aren't "In progress" and haven't been completed. There's an "Add todo" button on the card to add a new task. After clicking "Add todo", a modal window opens with a header, main text, a button which, when clicked, selects a specific user to perform the task and an accept button which adds the task to the board, and a cancel button which simply deletes this "Todo".
 
 [<img src="./src/assets/Modal_window.png" alt="Modal-window">]()
 
-Once a task has been added to the board, there are "Edit" buttons at the top which will allow you to edit your task and "Delete" buttons which will remove the task from the list. There is also a conversion button which, when clicked, will move the task to the "In Progress" list.
+When the task is added to the column, there's "Edit" button at the top which allows you to edit the task and "Delete" button which removes the task from the column. There's also a conversion button which, when clicked, moves the task to the "In Progress" column.
 
 []()
 
@@ -92,7 +93,7 @@ The "In Progress" column contains the tasks that are currently in progress. You 
 
 ### Done
 
-The "Done" column contains tasks that have already been completed. At the bottom of the column is the "Delete All" button, which will delete the entire list of tasks entered there, or if you only need to delete one, specific task, simply click on the "Delete" button on the card itself.
+The "Done" column contains tasks that have already been completed. At the bottom of the column is the "Delete All" button, which deletes the entire list of tasks entered there, and if you only need to delete one specific task simply click on the "Delete" button on the card itself.
 
 []()
 
@@ -113,11 +114,11 @@ In our project we used:
 
 ## Our Team
 
-- Evgeniy - []()
+- Evgeny - [Evgeny-Vasiukevich](https://github.com/EvgenyWas)
 - Andrey - [Andrey-Zhukovets](https://github.com/a-zhukovets)
 - Nikita - [Nikita-Lugovskih](https://github.com/nikitalugovskih)
-- Evgeniy - [Zhenya-Lis](https://github.com/zhenyalis)
-- David - [David-Kokojev]()
+- Evgeny - [Zhenya-Lis](https://github.com/zhenyalis)
+- David - [David-Kokojev](https://github.com/kokoiev34)
 - Anastasia - [Anastasia-Shkulkova](https://github.com/AnastasiaShkulkova)
 
 Project link:
@@ -126,7 +127,7 @@ Project link:
 
 # Acknowledgment
 
-Special thanks to our teacher for her super-valuable help in creating this project.
+Special thanks to our teacher for his super-valuable help in creating this project.
 
 Stas - [Stanislav-Tavyrin](https://github.com/stnslvtvrn)
 
