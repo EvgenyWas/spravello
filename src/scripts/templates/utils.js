@@ -1,3 +1,7 @@
+import { generateTodo } from '../components/functionsForDom';
+import { arrayOfTodos } from '../components/todo';
+
+// Function for time of generateTodo
 function dateToLocaleString() {
   let time = new Date();
   let newTime = time.toLocaleString("ru").slice(0, -3);
@@ -5,21 +9,7 @@ function dateToLocaleString() {
   return newTime;
 };
 
-function swapTodo(unit, node) {
-  targetTodo.isProgress = unit;
-  node.append(
-    generateTodo(
-      targetTodo.todoId,
-      targetTodo.todoTitle,
-      targetTodo.todoDesk,
-      targetTodo.todoUser,
-      targetTodo.todoTime,
-      targetTodo.isProgress
-    )
-  );
-  target.closest(".task").remove();
-};
-
+// Function for add a todo in defently list
 function addTodo(list, node) {
   list.forEach((todo) =>
     node.append(generateTodo(
@@ -34,7 +24,8 @@ function addTodo(list, node) {
   );
 };
 
-const appendToList = (arr, node) => {
+// Function for add a todo in defently array
+function appendToList(arr, node) {
   arr.forEach(task => {
     node.append(generateTodo(
       task.todoId,
@@ -47,7 +38,4 @@ const appendToList = (arr, node) => {
   });
 };
 
-export { appendToList };
-export { addTodo };
-export { swapTodo };
-export { dateToLocaleString };
+export { appendToList, addTodo, dateToLocaleString };

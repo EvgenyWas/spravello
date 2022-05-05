@@ -1,10 +1,8 @@
 import { changeCount } from "./changeCount";
 import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
-import { dateToLocaleString } from "../templates/utils";
+import { dateToLocaleString, swapTodo, addTodo } from "../templates/utils";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "../services/localStorageApi";
-import { swapTodo } from "../templates/utils";
-import { addTodo } from "../templates/utils";
 
 let arrayOfTodos = [];
 let editCounter = 0;
@@ -112,6 +110,21 @@ main.addEventListener("click", (event) => {
     const done = document.querySelector("#done-tasks");
     const inprogress = document.querySelector("#inprogress-tasks");
     const targetTodo = arrayOfTodos[selectedTodo];
+
+    function swapTodo(unit, node) {
+      targetTodo.isProgress = unit;
+      node.append(
+        generateTodo(
+          targetTodo.todoId,
+          targetTodo.todoTitle,
+          targetTodo.todoDesk,
+          targetTodo.todoUser,
+          targetTodo.todoTime,
+          targetTodo.isProgress
+        )
+      );
+      target.closest(".task").remove();
+    };
 
     if (dataset.type === "todoConversionBtn") {
       if (document.getElementById("inprogress-tasks").childElementCount < 6) {
