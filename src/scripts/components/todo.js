@@ -203,10 +203,15 @@ overlay.addEventListener("click", function () {
   document.querySelector("#modalContainer").remove();
   overlay.classList.remove("is-show");
 });
+overlay.addEventListener("click", function () {
+  document.querySelector("#modalWindow").remove();
+  overlay.classList.remove("is-show");
+});
 
 // Listeners for keydowns Enter and Escapes for modal winwdows
 document.addEventListener("keydown", (event) => {
   const enterButton = document.getElementById("confirmBtnId");
+
   if (!enterButton) return;
 
   if (event.key == "Enter") {

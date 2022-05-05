@@ -20,6 +20,7 @@ const generateModalTask = (title = "", desc = "") => {
   confirmBtn.dataset.type = "btnConfirm";
   confirmBtn.id = "confirmBtnId";
   cancelBtn.id = "cancelBtnId";
+  modalWindow.id = "modalWindow"
 
   const overlay = document.getElementById("overlay");
   overlay.classList.add("is-show");
