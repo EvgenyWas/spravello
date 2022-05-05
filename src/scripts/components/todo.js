@@ -1,6 +1,6 @@
 import { changeCount } from "./changeCount";
 import { generateModalTask, generateTodo, generateWarning } from "./functionsForDom";
-import { dateToLocaleString, swapTodo, addTodo } from "../templates/utils";
+import { dateToLocaleString, addTodo } from "../templates/utils";
 import { getUsersFromApi } from "../services/getUsersFromApi";
 import { LOCAL_STORAGE_API } from "../services/localStorageApi";
 

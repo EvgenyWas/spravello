@@ -20,6 +20,7 @@ const generateModalTask = (title = "", desc = "") => {
   confirmBtn.dataset.type = "btnConfirm";
   confirmBtn.id = "confirmBtnId";
   cancelBtn.id = "cancelBtnId";
+  modalWindow.id = "modalWindow"
 
   const overlay = document.getElementById("overlay");
   overlay.classList.add("is-show");
@@ -117,7 +118,6 @@ function generateWarning({ onConfirm, onCancel }) {
   modalConfirmBtn.addEventListener("click", () => {
     onConfirm();
     document.querySelector("#modalContainer").remove();
-
     overlay.classList.remove("is-show");
   });
   overlay.classList.add("is-show");
