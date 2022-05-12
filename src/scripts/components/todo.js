@@ -303,6 +303,7 @@ const dragAndDrop = () => {
       todoConversionBtn.hidden = true;
       todoDeleteBtn.hidden = true; 
 
+      todoContainerHeader.className = "task__header task__header--inprogress";
       todoBackBtn.hidden = false;
       todoCompleteBtn.hidden = false;
     }
@@ -319,7 +320,7 @@ const dragAndDrop = () => {
       todoBackBtn.hidden = true;
 
       todoDeleteBtn.hidden = false;
-      todoContainerHeader.append(todoElementTitle);
+      todoContainerHeader.append(todoBackBtn, todoCompleteBtn);
     }
 
     if (event.target.closest(".todo")) {
@@ -329,9 +330,13 @@ const dragAndDrop = () => {
       todoCompleteBtn.hidden = true;
       todoBackBtn.hidden = true;
 
+      todoContainerHeader.className = "task__header task__header--todo";
+      todoEditBtn.className ="task__btn-edit";
+      todoDeleteBtn.className ="task__btn-delete";
+      todoConversionBtn.className ="task__btn-conversion";
       todoEditBtn.hidden = false;
-      todoConversionBtn.hidden = false;
       todoDeleteBtn.hidden = false;
+      todoConversionBtn.hidden = false;
     }
 
     arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
