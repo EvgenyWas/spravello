@@ -56,6 +56,10 @@
     flex-grow: 1;
 }
 
+.header__filter:hover{
+    cursor: grab;
+}
+
 @include sm {
     .header__select{
         background: none;

@@ -1,6 +1,6 @@
 .toast {
   position: fixed;
-  top: 200px;
+  top: 50px;
   left: 0;
   right: 0;
   z-index: 50;
@@ -8,16 +8,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  text-align: center;
 
-  max-width: 40%;
-  min-width: 300px;
+  max-width: 20%;
+  min-width: 600px;
   margin: auto;
   padding: 0px 20px;
 
   transform: translateX(200%);
   border: 1px solid black;
   border-radius: 20px;
-  background: $todo-color;
+  background: #559057;
 
   transition: width 2s, height 2s, transform 2s;
 

@@ -15,6 +15,15 @@
 }
 
 /* Todo article*/
+
+.task:hover{
+    cursor: grab;
+}
+
+.modal__list:hover{
+    cursor: grab;
+}
+
 .todo{
     display: flex;
     margin: 20px;
@@ -71,6 +80,7 @@
 .todo__button:hover {
     // background-color: #881a1b;
     background-color: #9b9ca0;
+    cursor: pointer;
 }
 
 .todo__button:active {
@@ -190,6 +200,7 @@
 .done__button:hover {
     // background-color: #738862;
     background-color: #9b9ca0;
+    cursor: pointer;
 }
 
 .done__button:active {
