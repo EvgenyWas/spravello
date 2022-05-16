@@ -119,7 +119,7 @@ In our project we used:
 - David - [David-Kokojevs](https://github.com/kokoiev34)
 - Anastasia - [Anastasia-Shkulkova](https://github.com/AnastasiaShkulkova)
 
-Watch demo: https://evgenywas.github.io/spravello/
+### Watch demo: https://evgenywas.github.io/spravello/
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
