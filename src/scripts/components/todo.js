@@ -26,7 +26,7 @@ main.addEventListener("click", (event) => {
     target.parentNode.parentNode.remove();
     overlay.classList.remove("is-show");
     editCounter = 0;
-  }
+  };
 
   if (dataset.type === "btnConfirm") {
     const title = target.parentNode.previousSibling.previousSibling;
@@ -57,7 +57,7 @@ main.addEventListener("click", (event) => {
       target.parentNode.parentNode.remove();
       LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
       return;
-    }
+    };
 
     target.parentNode.parentNode.remove();
 
@@ -87,7 +87,7 @@ main.addEventListener("click", (event) => {
 
     changeCount();
     LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
-  }
+  };
 
   if (dataset.type === "todoDeleteBtn") {
     let selectedTodoDelete = arrayOfTodos.findIndex(
@@ -97,7 +97,7 @@ main.addEventListener("click", (event) => {
     arrayOfTodos.splice(selectedTodoDelete, 1);
     changeCount();
     LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
-  }
+  };
 
   if (
     dataset.type === "todoConversionBtn" ||
@@ -145,7 +145,7 @@ main.addEventListener("click", (event) => {
 
     changeCount();
     LOCAL_STORAGE_API.setStorageData(arrayOfTodos);
-  }
+  };
 
   if (dataset.type === "todoEditBtnId") {
     editCounter = 1;
@@ -218,6 +218,16 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+// Close modal windows for a click outside
+overlay.addEventListener("click", function () {
+  document.querySelector("#modalContainer").remove();
+  overlay.classList.remove("is-show");
+});
+overlay.addEventListener("click", function () {
+  document.querySelector("#modalWindow").remove();
+  overlay.classList.remove("is-show");
+});
+
 // Filter in header
 const filterButton = document.getElementById("filter-button");
 
@@ -245,8 +255,6 @@ filterButton.addEventListener("click", () => {
   let filteredArrayTodo = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "start");
   let filteredArrayInProgress = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "inProgress");
   let filteredArrayDone = arrayOfTodos.filter((todo) => todo.todoUser === select.value && todo.isProgress === "done");
-
-  
 
   addTodo(filteredArrayTodo, listTodo);
   addTodo(filteredArrayInProgress, listInProgress);
@@ -306,7 +314,7 @@ const dragAndDrop = () => {
       todoContainerHeader.className = "task__header task__header--inprogress";
       todoBackBtn.hidden = false;
       todoCompleteBtn.hidden = false;
-    }
+    };
 
     if (event.target.closest(".done")) {
       droppedTask[0].isProgress = "done";
@@ -321,7 +329,7 @@ const dragAndDrop = () => {
 
       todoDeleteBtn.hidden = false;
       todoContainerHeader.append(todoBackBtn, todoCompleteBtn);
-    }
+    };
 
     if (event.target.closest(".todo")) {
       droppedTask[0].isProgress = "start";
@@ -337,7 +345,7 @@ const dragAndDrop = () => {
       todoEditBtn.hidden = false;
       todoDeleteBtn.hidden = false;
       todoConversionBtn.hidden = false;
-    }
+    };
 
     arrayOfTodos = arrayOfTodos.filter(todo => +todo.todoId !== +taskId);
     arrayOfTodos.push(droppedTask[0]);
