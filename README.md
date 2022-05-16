@@ -58,7 +58,7 @@ The "Spravello" project is a simplified version of the cloud-based software whic
 
 ## Header
 
-[<img src="./src/assets/Header.png" alt="Header">]()
+[<img src="./elements/Header.png" alt="Header">]()
 
 1.  Website logo
 2.	You can easily find any user among the tasks using the filter list.
@@ -71,29 +71,29 @@ The "Spravello" project is a simplified version of the cloud-based software whic
 
 Next you will see three columns for placing your "todo" tasks.
 
-[<img src="./src/assets/Cards.png" alt="Cards">]()
+[<img src="./elements/Cards.png" alt="Cards">]()
 
 ### Todo
 
 The "todo" column contains all tasks that aren't "In progress" and haven't been completed. There's an "Add todo" button on the card to add a new task. After clicking "Add todo", a modal window opens with a header, main text, a button which, when clicked, selects a specific user to perform the task and an accept button which adds the task to the board, and a cancel button which simply deletes this "Todo".
 
-[<img src="./src/assets/Modal_window.png" alt="Modal-window">]()
+[<img src="./elements/Modal_window.png" alt="Modal-window">]()
 
 When the task is added to the column, there's "Edit" button at the top which allows you to edit the task and "Delete" button which removes the task from the column. There's also a conversion button which, when clicked, moves the task to the "In Progress" column.
 
-[<img src="./src/assets/ToDo_card.png" alt="InProgress-Card">]()
+[<img src="./elements/ToDo_card.png" alt="InProgress-Card">]()
 
 ### In Progress
 
 The "In Progress" column contains the tasks that are currently in progress. You can "rewind" the task back to the "Todo" list by pressing the "Back" button and you can also move it to the "Done" column, where the completed tasks are located, by pressing the "Complete" button.
 
-[<img src="./src/assets/InProgress_card.png" alt="InProgress-Card">]()
+[<img src="./elements/InProgress_card.png" alt="InProgress-Card">]()
 
 ### Done
 
 The "Done" column contains tasks that have already been completed. At the bottom of the column is the "Delete All" button, which deletes the entire list of tasks entered there, and if you only need to delete one specific task simply click on the "Delete" button on the card itself.
 
-[<img src="./src/assets/Done_card.png" alt="Done-Card">]()
+[<img src="./elements/Done_card.png" alt="Done-Card">]()
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
