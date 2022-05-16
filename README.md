@@ -36,8 +36,6 @@
 
 The "Spravello" project is a simplified version of the cloud-based software which manages small groups' projects "Trello".
 
-[<img src="./src/assets/Project.png" alt="Project">]()
-
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
 ### Installing and running the project You need to do the following: 
