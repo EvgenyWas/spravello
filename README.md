@@ -101,9 +101,9 @@ The "Done" column contains tasks that have already been completed. At the bottom
 
 In our project we used:
 
-- scss
-- javascript
-- parcel-bundler
+- JavaScript
+- SCSS
+- Parcel-bundler
 - JSONPlaceholder API
 - component approach
 
