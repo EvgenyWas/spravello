@@ -116,10 +116,10 @@ In our project we used:
 - Andrey - [Andrey-Zhukovets](https://github.com/a-zhukovets)
 - Nikita - [Nikita-Lugovskih](https://github.com/nikitalugovskih)
 - Evgeny - [Zhenya-Lis](https://github.com/zhenyalis)
-- David - [David-Kokojev](https://github.com/kokoiev34)
+- David - [David-Kokojevs](https://github.com/kokoiev34)
 - Anastasia - [Anastasia-Shkulkova](https://github.com/AnastasiaShkulkova)
 
-Project link:
+Watch demo: https://evgenywas.github.io/spravello/
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
