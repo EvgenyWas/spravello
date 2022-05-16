@@ -42,7 +42,7 @@ The "Spravello" project is a simplified version of the cloud-based software whic
 
 1.  Copy repository
    ```sh
-   git clone
+   git clone https://github.com/EvgenyWas/spravello.git
    ```
 2.  Install Node modules
    ```sh
