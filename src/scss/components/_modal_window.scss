@@ -1,0 +1,81 @@
+.modal__window{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 50vh;
+    left: 50vw;
+    transform: translate(-50%,-50%);
+    width: 400px;
+    height: 250px;
+    padding: 20px;
+    background-color: $todo-color;
+    border: 2px solid #740406;
+    border-radius: 40px;
+    z-index: 30;
+}
+
+.modal__title{
+    display: flex;
+    overflow-wrap: break-word;
+    width: 50%;
+    max-height: 30%;
+    margin: 5px;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: whitesmoke;
+}
+
+.modal__description{
+    display: flex;
+    overflow-wrap: break-word;
+    background-color: whitesmoke;
+    width: 97%;
+    height: 55%;
+    border-radius: 15px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.modal__options{
+    display: flex;
+    margin: 20px auto 0 auto;
+    width: 95%;   
+}
+
+.modal__list{
+    display: flex;
+    text-align: center;
+    width: 50%;
+    border-radius: 5px;
+    background-color: whitesmoke;
+    margin-right: 35px;
+    padding: 3px;
+}
+
+.modal__cancel{
+    display: flex;
+    text-align: center;
+    margin-right: 20px;
+    padding: 3px;
+    @include btn;
+    &:hover{
+        @include btn-hoover;
+    }
+    &:active{
+        @include btn-active;
+    }
+}
+
+.modal__confirm{
+    display: flex;
+    text-align: center;
+    padding: 3px;
+    @include btn;
+    &:hover{
+        @include btn-hoover;
+    }
+    &:active{
+        @include btn-active;
+    }
+
+}
