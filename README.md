@@ -69,7 +69,7 @@ The "Spravello" project is a simplified version of the cloud-based software whic
 
 ## Todo cards
 
-Next you will see three columns for placing your "todo" tasks.
+Next you see three columns for placing your "todo" tasks.
 
 [<img src="./elements/Cards.png" alt="Cards">]()
 
@@ -78,6 +78,8 @@ Next you will see three columns for placing your "todo" tasks.
 The "todo" column contains all tasks that aren't "In progress" and haven't been completed. There's an "Add todo" button on the card to add a new task. After clicking "Add todo", a modal window opens with a header, main text, a button which, when clicked, selects a specific user to perform the task and an accept button which adds the task to the board, and a cancel button which simply deletes this "Todo".
 
 [<img src="./elements/Modal_window.png" alt="Modal-window">]()
+
+*You can use drag&drop to move cards from one list to another, or use the buttons described below.*
 
 When the task is added to the column, there's "Edit" button at the top which allows you to edit the task and "Delete" button which removes the task from the column. There's also a conversion button which, when clicked, moves the task to the "In Progress" column.
 
