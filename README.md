@@ -32,6 +32,8 @@
   <li><a href="#Acknowledgment">Acknowledgment</a></li>
 </ol>
 
+### [Watch demo](https://evgenywas.github.io/spravello/)
+
 ## About the project 
 
 The "Spravello" project is a simplified version of the cloud-based software which manages small groups' projects "Trello".
@@ -120,8 +122,6 @@ In our project we used:
 - Evgeny - [Zhenya-Lis](https://github.com/zhenyalis)
 - David - [David-Kokojevs](https://github.com/kokoiev34)
 - Anastasia - [Anastasia-Shkulkova](https://github.com/AnastasiaShkulkova)
-
-### Watch demo: https://evgenywas.github.io/spravello/
 
 <p align="right">(<a href="#top">Back to top</a>)</p>
 
